@@ -1,0 +1,22 @@
+<% content_for(:title) { "#{@event.title}" } %>
+
+<div class="left"><h1><%= @event.title %></h1></div>
+<div class="right"><%= link_to "New project", new_event_project_url(@event), :class => 'action' %></div> 
+<div class="clear"></div>
+                         
+<div class="winners">
+    <h2>Winners</h2>
+    
+    
+</div>
+                                                                          
+<div class="projects">
+    <h2>All projects</h2>
+	<ul>
+		<% @event.projects.each do |project| -%>
+		    <li>
+		        <div class="project_name"><%= link_to project.title, event_project_url(@event, project) %></div>
+		    </li>
+		<% end -%>
+	</ul>             
+</div>

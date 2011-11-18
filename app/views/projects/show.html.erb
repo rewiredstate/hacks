@@ -1,6 +1,8 @@
 <% content_for(:title) { "#{@project.title} - #{@event.title}" } %>
 <div id="project_control">
-    <h1><%= @project.title %></h1> <h2>by <%= @project.team %></h2>
+    <div class="left"><h1><%= @project.title %></h1> <h2>by <%= @project.team %></h2></div>
+	<div class="right"><%= link_to "Edit project", edit_event_project_url(@event,@project), :class => 'action' %></div> 
+	<div class="clear"></div>
     
     <div class="feature">                            
     
@@ -14,7 +16,7 @@
     <div class="links">
         <div class="inner">
             <ul>
-                <li class="icon_url">Project URL: <%= link_to @project.format_url(@project.url), @project.url %></li>
+                <li class="icon_url">Project URL: <%= link_to @project.format_url(@project.url), @project.url rescue "<em>None</em>".html_safe %></li>
                 
                 <% if @project.github_url -%><li class="icon_github">GitHub: <%= link_to @project.formatted_github_url, @project.github_url %></li>
                 <% elsif @project.svn_url -%><li class="icon_code">SVN URL: <%= link_to @project.format_url(@project.svn_url), @project.svn_url %></li>
@@ -24,7 +26,16 @@
             </ul>
         </div>
     </div>
-    <div class="clear"></div> 
+    <div class="clear"></div>
+                      
+    <% if @project.has_won_prize? -%>                                                   
+        <% @project.award_categories.each do |award| -%>
+            <div class="award award_<%= award.format %> <%= (award.level.nil?) ? "" : "level_#{award.level}" %>">
+                <p class="summary"><%= @project.title %> <%= award.project_action %> <strong><%= award.title %></strong> at <%= @event.title %>!</p>
+                <% if award.description -%><p class="description"><%= award.description %></p><% end -%>
+            </div>                                            
+        <% end -%>
+    <% end -%> 
     
     <div class="column left">
         

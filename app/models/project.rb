@@ -1,8 +1,10 @@
 class Project < ActiveRecord::Base
-  belongs_to :event
+  belongs_to :event                      
+  
+  default_scope order('title ASC')
   
   has_many :awards
-  has_many :prizes, :class_name => 'AwardCategory'
+  has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
   
   before_validation :create_slug
        
@@ -21,8 +23,12 @@ class Project < ActiveRecord::Base
     self.github_url.match(/\/([A-Za-z0-9_-]+\/[A-Z-az0-9_-]+)/i)[1]
   end                               
   
+  def has_won_prize?
+    (self.awards.count > 0) ? true : false
+  end
+  
   private
     def create_slug
-      slug = title.parameterize
+      self.slug = self.title.parameterize
     end
 end

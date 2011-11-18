@@ -19,6 +19,15 @@
 			li.icon_twitter { background-image: url(<%= asset_path 'icons/twitter.png' %>); }
 		}
 	}                          
+	                                                              
+    .award { background: #eee; border: 1px solid #ccc; padding: 1em; margin-bottom: 1em;  
+        p { margin: 0em; text-align: center; }
+        p.summary { font-size: 1.2em; }
+        p.description { margin-top: 0.3em; font-size: 1.1em; color: #777;  }
+    }                                          
+    .award.award_overall.level_1 { background: #FFF4E6 url(<%= asset_path 'icons/first_overall.png' %>) no-repeat center 11px; padding-top: 50px; border-color: #C6A053; }
+	.award.award_overall.level_2 { background: #eee url(<%= asset_path 'icons/second_overall.png' %>) no-repeat center 11px; padding-top: 50px; border-color: #aaa; }
+	.award.award_mention { background: #EDE7FF url(<%= asset_path 'icons/special_mention.png' %>) no-repeat center 11px; padding-top: 50px; border-color: #86659A; }
 	                                                   
 	#description { font-family: Georgia, Times, sans-serif; font-size: 1.3em; font-style: italic; line-height: 1.3em; margin-bottom: 1em;  }
 	
