@@ -1,0 +1,57 @@
+<% content_for(:title) { "#{@project.title} - #{@event.title}" } %>
+<div id="project_control">
+    <h1><%= @project.title %></h1> <h2>by <%= @project.team %></h2>
+    
+    <div class="feature">                            
+    
+    </div>
+    <div class="intro">  
+        <div class="inner">
+            <%= truncate @project.description, :length => 195 %>
+            <%= link_to "Read more", "#description", :class => "more" %>
+        </div>
+    </div>                                                              
+    <div class="links">
+        <div class="inner">
+            <ul>
+                <li class="icon_url">Project URL: <%= link_to @project.format_url(@project.url), @project.url %></li>
+                
+                <% if @project.github_url -%><li class="icon_github">GitHub: <%= link_to @project.formatted_github_url, @project.github_url %></li>
+                <% elsif @project.svn_url -%><li class="icon_code">SVN URL: <%= link_to @project.format_url(@project.svn_url), @project.svn_url %></li>
+                <% elsif @project.code_url -%><li class="icon_code">Code URL: <%= link_to @project.format_url(@project.code_url), @project.code_url %></li><% end -%>             
+                
+                <% if @project.twitter -%><li class="icon_twitter">Twitter: <%= twitter_links_for(@project) %></li><% end -%>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div> 
+    
+    <div class="column left">
+        
+    </div>                 
+    <div class="column right">
+        <div id="description">
+            <%= @project.description %>
+        </div>
+        <% if @project.data -%>
+            <div class="markdown_box project_data">
+                <h3>About the data used in <%= @project.title %></h3>
+                <%= @project.data %>
+            </div>
+        <% end -%>
+        <% if @project.ideas -%>
+            <div class="markdown_box project_ideas">
+                <h3>Ideas for taking <%= @project.title %> forwards</h3>
+                <%= @project.ideas %>
+            </div>
+        <% end -%>                  
+        <% if @project.costs -%>
+            <div class="markdown_box project_costs">
+                <h3>Estimated costs to take <%= @project.title %> forwards</h3>
+                <%= @project.costs %>
+            </div>
+        <% end -%>        
+    </div>          
+    <div class="clear"></div>
+    
+</div>

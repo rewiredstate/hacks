@@ -1,0 +1,34 @@
+#project_control {
+
+    h1, h2 { display: inline-block; vertical-align: top; }
+	h2 { font-size: 22px; padding-left: 10px; color: #666; }
+
+	.feature { background: #888; float: left; height: 320px; width: 540px; }     
+	.intro, .links { width: 390px; float: right; 
+		.inner { padding: 18px; }                 
+	}
+	.intro { background: #D7F3FF; border: 1px solid #779DAC; font-size: 1.4em; line-height: 22px;                        
+		.more { display: inline-block; float: right; margin: 0.5em 0 0.8em; font-size: 0.8em; }
+	}  
+	.links { background: #eee; border: 1px solid #ccc; margin: 1em 0 0; 
+		ul { margin: 0 !important; 
+			li { background: transparent no-repeat left center; font-size: 1.1em; margin: 0.5em 0; list-style: none; padding-left: 22px; }
+			li.icon_url { background-image: url(<%= asset_path 'icons/url.png' %>); }
+			li.icon_github { background-image: url(<%= asset_path 'icons/github.png' %>); }
+			li.icon_code { background-image: url(<%= asset_path 'icons/code.png' %>); }
+			li.icon_twitter { background-image: url(<%= asset_path 'icons/twitter.png' %>); }
+		}
+	}                          
+	                                                   
+	#description { font-family: Georgia, Times, sans-serif; font-size: 1.3em; font-style: italic; line-height: 1.3em; margin-bottom: 1em;  }
+	
+	.clear { padding-top: 1.2em; } 
+	
+	.markdown_box { border: 1px solid #ccc; font-size: 1.15em; padding: 0.8em; }
+	.markdown_box h3 { font-size: 1.2em; }
+	.markdown_box { margin: 1.1em 0; }  
+	                                     
+	.column.left { width: 250px; }
+	.column.right { width: 670px; }
+
+}
