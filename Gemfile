@@ -1,10 +1,15 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
+                           
+group :development do
+  gem 'sqlite3'
+end
 
-gem 'sqlite3'
 gem 'json'
 gem 'jquery-rails'         
+ 
+gem 'thin'            
                              
 gem 'aws-s3'
 gem 'rabl'
