@@ -1,11 +1,11 @@
 class AddEventSecretAndActive < ActiveRecord::Migration
   def up
     add_column :events, :secret, :string
-    add_column :events, :active, :bool, :default => true
+    add_column :events, :active, :boolean, :default => true
   end
 
-  def down                              
+  def down                        
+    remove_column :events, :active      
     remove_column :events, :secret
-    remove_column :events, :active
   end
 end

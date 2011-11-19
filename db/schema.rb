@@ -30,8 +30,15 @@ ActiveRecord::Schema.define(:version => 20111118230756) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "events" because of following StandardError
-#   Unknown type 'bool' for column 'active'
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.string   "hashtag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "secret"
+    t.boolean  "active",     :default => true
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "title"
