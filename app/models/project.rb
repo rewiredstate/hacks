@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :event                      
+                                 
+  has_paper_trail
   
   default_scope order('title ASC')
   after_initialize :set_default_values                            

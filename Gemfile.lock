@@ -62,6 +62,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.3)
+    paper_trail (2.5.0)
+      rails (~> 3)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -136,6 +138,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   jquery-rails
   json
+  paper_trail (~> 2)
   paperclip (~> 2.4)
   pg
   rabl

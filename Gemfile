@@ -7,7 +7,7 @@ group :development do
 end
 
 gem 'json'
-gem 'jquery-rails'         
+gem 'jquery-rails'                        
  
 gem 'thin'            
                              
@@ -15,7 +15,8 @@ gem 'aws-s3'
 gem 'rabl'
 gem "breadcrumbs", "~> 0.1.6" 
 gem "rdiscount", "~> 1.6.8"                 
-gem "paperclip", "~> 2.4"
+gem "paperclip", "~> 2.4"             
+gem 'paper_trail', '~> 2'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
