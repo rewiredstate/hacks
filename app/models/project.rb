@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
   
   has_attached_file :image, 
-    :styles => { :full => ["1080x640#", :jpg], :project => ["540x320#", :jpg], :mini => ["270x160#", :jpg] },
+    :styles => { :full => ["1080x640#", :jpg], :project => ["540x320#", :jpg], :mini => ["270x160#", :jpg], :thumb => ["140x83#", :jpg] },
     :storage => :s3,
     :bucket => ENV['S3_BUCKET'],
     :s3_credentials => {
@@ -18,10 +18,10 @@ class Project < ActiveRecord::Base
   
   attr_accessor :my_secret
   
-  before_validation :create_slug
+  before_validation :create_slug, :blank_url_fields
        
   validates :title, :team, :description, :url, :presence => true
-  validates :summary, :presence => true, :length => { :maximum => 140 }          
+  validates :summary, :presence => true, :length => { :maximum => 180 }          
   validates :slug, :uniqueness => { :case_sensitive => false }      
   validates :secret, :presence => true, :on => :create, :if => :secret_required?   
   validates :url, :code_url, :github_url, :svn_url, :format => { :with => URI::regexp, :allow_blank => true }
@@ -61,7 +61,7 @@ class Project < ActiveRecord::Base
     self.slug + Time.now.strftime('%s')
   end
   
-  def has_won_prize?
+  def has_won_award?
     (self.awards.count > 0) ? true : false
   end
   
@@ -69,6 +69,13 @@ class Project < ActiveRecord::Base
     def create_slug
       self.slug = self.title.parameterize if !self.slug or self.slug.empty?
     end            
+                           
+    def blank_url_fields
+      self.url = '' if self.url == 'http://'
+      self.github_url = '' if self.github_url == 'http://'
+      self.code_url = '' if self.code_url == 'http://'
+      self.svn_url = '' if self.svn_url == 'http://'
+    end
     
     def set_default_values
       self.url ||= 'http://'

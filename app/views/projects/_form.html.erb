@@ -41,8 +41,8 @@
     </p>
     <p>
         <%= f.label :summary, "Project Summary <span>*</span>".html_safe %>
-        <%= f.text_field :summary, :limit => 140 %>
-        <span class="field_description">An overview of your project in 140 characters or less.</span>
+        <%= f.text_field :summary, :maxlength => 180 %>
+        <span class="field_description">An overview of your project in 180 characters or less.</span>
     </p>
 </fieldset>             
 

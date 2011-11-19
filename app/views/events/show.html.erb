@@ -12,17 +12,10 @@
 <div class="winners">
     <h2>Winners</h2>
     
-    <% @event.award_categories.each do |category| -%>
-    <div class="award_category">
-        <h3><%= category.title %></h3>
-        <p class="intro"><%= category.description %></p>
-        <% category.award_winners.each do |project| -%>
-        <div class="project">
-            <%= link_to project.title, event_project_url(@event, project)%>
-        </div>
-        <% end -%>
-    </div>
+    <ul><% @event.award_winners.each do |project| -%>
+        <%= render :partial => 'single_project', :locals => {:project => project, :winners => true} %>
     <% end -%>
+    </ul>
 </div>
 <% end -%>
                                                                           
@@ -30,9 +23,7 @@
     <h2>All projects</h2>
 	<ul>
 		<% @event.projects.each do |project| -%>
-		    <li>
-		        <div class="project_name"><%= link_to project.title, event_project_url(@event, project) %></div>
-		    </li>
+		    <%= render :partial => 'single_project', :locals => {:project => project, :winners => false} %>
 		<% end -%>
 	</ul>             
 </div>

@@ -39,7 +39,7 @@
     </div>
     <div class="clear clearpad"></div>
                       
-    <% if @project.has_won_prize? -%>                                                   
+    <% if @project.has_won_award? -%>                                                   
         <% @project.award_categories.each do |award| -%>
             <div class="award award_<%= award.format %> <%= (award.level.nil?) ? "" : "level_#{award.level}" %>">
                 <p class="summary"><%= @project.title %> <%= award.project_action %> <strong><%= award.title %></strong> at <%= @event.title %>!</p>

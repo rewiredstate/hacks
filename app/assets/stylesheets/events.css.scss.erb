@@ -1,0 +1,39 @@
+#content {
+	.migrate_rs { 
+		a, a:link, a:visited {   
+			background: #f6f6f6 url(<%= asset_path 'go.png' %>) no-repeat 15px center;
+			display: inline-block;
+			font-size: 1.2em;    
+			padding: 1em 1.1em 1em 50px;
+		}   
+		a:hover, a:active { background-color: #eee;	}
+	}                                               
+                                                                                                           
+	.projects, .winners {	                                                                      
+		h2 { font-size: 1.7em; color: #444; font-weight: bold; font-family: Helvetica, Arial, sans-serif; }
+		                        
+		ul { margin: 0; }
+		li { list-style: none; background: #eee; min-height: 83px; border: 1px solid #ddd; margin-bottom: 1em; display: block; padding: 0.9em;
+			.right { width: 780px; }
+			
+			.image a { width: 140px; height: 83px; background: #fff; display: block; border: 1px solid #ccc; 
+				img { padding: 0; border: 0; }
+			}
+			h3 { font-size: 1.5em; display: inline-block; margin: 0.2em 0 0.3em; 
+				a { text-decoration: none; color: #444; }
+				a:hover, a:active { color: #222; }
+			}                                             
+			.project_team { display: inline-block; font-family: 'Bitter', Helvetica, Arial, sans-serif; font-size: 1.2em; color: #888; }
+			.project_award { background: no-repeat left center; padding-left: 20px; font-size: 1.1em; font-weight: bold; margin: 0.1em 0 0.4em; }
+			
+			.project_award.award_overall.level_1 { background-image: url(<%= asset_path 'icons/mini_first_overall.png' %>); color: #C6A053; }
+			.project_award.award_overall.level_2 { background-image: url(<%= asset_path 'icons/mini_second_overall.png' %>); color: #aaa; }
+			.project_award.award_mention { background-image: url(<%= asset_path 'icons/mini_special_mention.png' %>); color: #86659A; }
+			
+			.project_summary { font-size: 1.2em; color: #666; }
+		}   
+		li.award_overall.level_1 { background: #FFF4E6; border-color: #C6A053; }
+		li.award_mention { background: #EDE7FF; border-color: #86659A; }
+		
+	}   
+}
