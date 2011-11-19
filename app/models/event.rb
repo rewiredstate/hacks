@@ -14,6 +14,10 @@ class Event < ActiveRecord::Base
     self.slug
   end       
   
+  def has_secret?
+    !self.secret.nil?
+  end
+  
   private
     def create_slug
       self.slug = self.title.parameterize unless self.slug

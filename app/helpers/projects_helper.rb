@@ -6,5 +6,9 @@ module ProjectsHelper
       output << link_to("@#{clean_user}", "http://twitter.com/#{clean_user}") 
     end
     output.join(', ').html_safe
+  end           
+  
+  def no_picture_message
+    ['A picture is worth a thousand words.','Every picture tells a story.'].sample
   end
 end

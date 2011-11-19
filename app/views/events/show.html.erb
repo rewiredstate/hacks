@@ -2,13 +2,29 @@
 
 <div class="left"><h1><%= @event.title %></h1></div>
 <div class="right"><%= link_to "New project", new_event_project_url(@event), :class => 'action' %></div> 
-<div class="clear"></div>
+<div class="clear"></div>   
+
+<div class="migrate_rs">
+    <%= link_to "See the full event details", "http://rewiredstate.org/events/#{@event.slug}" %>
+</div>
                          
+<% if @event.award_winners.count > 0 -%>
 <div class="winners">
     <h2>Winners</h2>
     
-    
+    <% @event.award_categories.each do |category| -%>
+    <div class="award_category">
+        <h3><%= category.title %></h3>
+        <p class="intro"><%= category.description %></p>
+        <% category.award_winners.each do |project| -%>
+        <div class="project">
+            <%= link_to project.title, event_project_url(@event, project)%>
+        </div>
+        <% end -%>
+    </div>
+    <% end -%>
 </div>
+<% end -%>
                                                                           
 <div class="projects">
     <h2>All projects</h2>

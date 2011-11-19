@@ -1,0 +1,11 @@
+<% content_for(:title) { "Edit project - #{@event.title}" } %>
+
+<div id="project_form">
+    <h1>Edit project</h1>
+    
+    <%= form_for [@event,@project] do |f| %>
+
+        <%= render :partial => 'form', :locals => { :f => f } %>                                                                                
+        
+    <% end %>
+</div>

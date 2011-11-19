@@ -1,0 +1,13 @@
+<% content_for(:title) { "New project - #{@event.title}" } %>
+
+<div id="project_form">
+    <h1>New project</h1>
+
+    <p>You can add your project created at <strong><%= @event.title %></strong> below. Fields marked with a asterisk <span class="required">*</span> are required.</p>
+    
+    <%= form_for [@event,@project] do |f| %>
+
+        <%= render :partial => 'form', :locals => { :f => f } %>                                                                                
+        
+    <% end %>
+</div>

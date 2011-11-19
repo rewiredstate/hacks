@@ -9,5 +9,5 @@ class ApplicationController < ActionController::Base
   
   def events_breadcrumb
     breadcrumbs.add "Events", "http://rewiredstate.org/events"
-  end
+  end     
 end
