@@ -65,6 +65,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.11.0)
     polyglot (0.3.3)
     rabl (0.5.1)
       activesupport (>= 2.3.14)
@@ -130,6 +131,7 @@ DEPENDENCIES
   jquery-rails
   json
   paperclip (~> 2.4)
+  pg
   rabl
   rails (= 3.1.1)
   rdiscount (~> 1.6.8)
