@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :event                      
   
   default_scope order('title ASC')
+  after_initialize :set_default_values                            
   
   has_many :awards
   has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
@@ -13,16 +14,17 @@ class Project < ActiveRecord::Base
     :s3_credentials => {
       :access_key_id => ENV['S3_KEY'],
       :secret_access_key => ENV['S3_SECRET']
-    }           
-  before_post_process :set_filename                               
+    }                                                             
   
   attr_accessor :my_secret
   
   before_validation :create_slug
        
-  validates :title, :team, :description, :url, :presence => true            
+  validates :title, :team, :description, :url, :presence => true
+  validates :summary, :presence => true, :length => { :maximum => 140 }          
   validates :slug, :uniqueness => { :case_sensitive => false }      
   validates :secret, :presence => true, :on => :create, :if => :secret_required?   
+  validates :url, :code_url, :github_url, :svn_url, :format => { :with => URI::regexp, :allow_blank => true }
   
   validates_each :my_secret, :on => :create, :if => :event_secret_required? do |model, attr, value|
     model.errors.add(attr, 'is incorrect') if (value != model.event.secret)
@@ -66,5 +68,12 @@ class Project < ActiveRecord::Base
   private
     def create_slug
       self.slug = self.title.parameterize if !self.slug or self.slug.empty?
+    end            
+    
+    def set_default_values
+      self.url ||= 'http://'
+      self.github_url ||= 'http://' 
+      self.svn_url ||= 'http://'
+      self.code_url ||= 'http://'   
     end
 end

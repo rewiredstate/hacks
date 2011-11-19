@@ -39,6 +39,11 @@
         <%= f.text_field :url %> 
         <span class="field_description">The URL to the website or prototype of your project.</span>
     </p>
+    <p>
+        <%= f.label :summary, "Project Summary <span>*</span>".html_safe %>
+        <%= f.text_field :summary, :limit => 140 %>
+        <span class="field_description">An overview of your project in 140 characters or less.</span>
+    </p>
 </fieldset>             
 
 <fieldset>

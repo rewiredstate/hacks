@@ -20,7 +20,7 @@
     </div>
     <div class="intro">  
         <div class="inner">
-            <%= truncate @project.description, :length => 195 %>
+            <%= @project.summary %>
             <%= link_to "Read more", "#description", :class => "more" %>
         </div>
     </div>                                                              
