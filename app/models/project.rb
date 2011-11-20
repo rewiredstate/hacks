@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
   
   before_validation :create_slug, :blank_url_fields
        
-  validates :title, :team, :description, :url, :image, :presence => true
+  validates :title, :team, :description, :url, :presence => true
   validates :summary, :presence => true, :length => { :maximum => 180 }          
   validates :slug, :uniqueness => { :case_sensitive => false }      
   validates :secret, :presence => true, :on => :create, :if => :secret_required?   
