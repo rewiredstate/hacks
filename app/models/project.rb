@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   after_initialize :set_default_values                            
   
   has_many :awards
-  has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
+  has_many :award_categories, :class_name => 'AwardCategory', :through => :awards 
   
   has_attached_file :image, 
     :styles => { :full => ["1080x640#", :jpg], :project => ["540x320#", :jpg], :mini => ["270x160#", :jpg], :thumb => ["140x83#", :jpg] },
@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
   
   before_validation :create_slug, :blank_url_fields
        
-  validates :title, :team, :description, :url, :presence => true
+  validates :title, :team, :description, :url, :image, :presence => true
   validates :summary, :presence => true, :length => { :maximum => 180 }          
   validates :slug, :uniqueness => { :case_sensitive => false }      
   validates :secret, :presence => true, :on => :create, :if => :secret_required?   

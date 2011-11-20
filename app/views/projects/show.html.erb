@@ -55,19 +55,19 @@
         <div id="description">
             <%= mkdn @project.description %>
         </div>
-        <% unless @project.data.empty? -%>
+        <% unless @project.data and @project.data.empty? -%>
             <div class="markdown_box project_data">
                 <h3>About the data used in <%= @project.title %></h3>
                 <%= mkdn @project.data %>
             </div>
         <% end -%>
-        <% unless @project.ideas.empty? -%>
+        <% unless @project.ideas and @project.ideas.empty? -%>
             <div class="markdown_box project_ideas">
                 <h3>Ideas for taking <%= @project.title %> forwards</h3>
                 <%= mkdn @project.ideas %>
             </div>
         <% end -%>                  
-        <% unless @project.costs.empty? -%>
+        <% unless @project.costs and @project.costs.empty? -%>
             <div class="markdown_box project_costs">
                 <h3>Estimated costs to take <%= @project.title %> forwards</h3>
                 <%= mkdn @project.costs %>
