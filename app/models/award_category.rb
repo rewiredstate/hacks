@@ -7,6 +7,10 @@ class AwardCategory < ActiveRecord::Base
   has_many :award_winners, :through => :awards, :source => :project     
   
   validates :format, :presence => true
+                      
+  def award_to(project)
+    self.awards.create :project => project
+  end
   
   def project_action
     case self.format
