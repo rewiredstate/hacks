@@ -16,7 +16,16 @@ class Project < ActiveRecord::Base
     :s3_credentials => {
       :access_key_id => ENV['S3_KEY'],
       :secret_access_key => ENV['S3_SECRET']
-    }                                                             
+    }         
+    
+  comma do
+    title "Project Name"
+    team "Team"
+    summary "Description"
+    project_url
+    url "URL" 
+    notes
+  end                                                    
   
   attr_accessor :my_secret
   
@@ -65,6 +74,14 @@ class Project < ActiveRecord::Base
   
   def has_won_award?
     (self.awards.count > 0) ? true : false
+  end
+  
+  def notes
+  ""
+  end
+  
+  def project_url
+    "http://hacks.rewiredstate.org" + Rails.application.routes.url_helpers.event_project_path(self.event, self)
   end
   
   private

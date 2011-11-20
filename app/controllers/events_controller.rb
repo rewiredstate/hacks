@@ -10,7 +10,8 @@ class EventsController < ApplicationController
       format.html { # show.html.erb
         }                          
       format.json { # show.json.rabl
-        }
+        }                    
+      format.csv { render :csv => @event.projects }
     end
   end                      
   
