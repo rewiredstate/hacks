@@ -6,5 +6,8 @@ en:
         team: "Project team"
         title: "Project title"
         url: "Project URL"
+        code_url: "Code URL"
+        github_url: "GitHub URL"
+        svn_url: "SVN URL"
         secret: "Project password"
         my_secret: "Password"
