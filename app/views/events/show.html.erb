@@ -12,8 +12,8 @@
 <div class="winners">
     <h2>Winners</h2>
     
-    <ul><% @event.award_winners.each do |project| -%>
-        <%= render :partial => 'single_project', :locals => {:project => project, :winners => true} %>
+    <ul><% @event.awards.each do |award| -%>
+        <%= render :partial => 'single_project', :locals => {:project => award.project, :winners => true} %>
     <% end -%>
     </ul>
 </div>
