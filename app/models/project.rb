@@ -36,6 +36,9 @@ class Project < ActiveRecord::Base
   validates :slug, :uniqueness => { :case_sensitive => false }      
   validates :secret, :presence => true, :on => :create, :if => :secret_required?   
   validates :url, :code_url, :github_url, :svn_url, :format => { :with => URI::regexp, :allow_blank => true }
+                               
+  validates_attachment_presence :image, :on => :create
+  validates_attachment_size :image, :less_than=>1.megabyte, :if => Proc.new { |i| !i.image.file? }
   
   validates_each :my_secret, :on => :create, :if => :event_secret_required? do |model, attr, value|
     model.errors.add(attr, 'is incorrect') if (value != model.event.secret)

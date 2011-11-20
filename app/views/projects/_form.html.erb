@@ -1,6 +1,7 @@
 <% if @project.errors.any? %>  
 <ul class="errors">  
- 	<% @project.errors.full_messages.each do |msg| %>  
+ 	<% @project.errors.full_messages.each do |msg| %>
+ 	  <% next if msg == "Image file name can't be empty" %>
 	<li class="message message_error"><%= msg %></li>  
 	<% end %>  
 </ul>  
@@ -95,9 +96,9 @@
     <span class="field_description">You can link to any other repository for your code here.</span>         
 </p>                                                           
 <p>
-    <%= f.label :image, "Screenshot" %>
+    <%= f.label :image, "Screenshot <span>*</span>".html_safe %>
     <%= f.file_field :image %> 
-    <span class="field_description">You can upload an image or screenshot of your app. Ideal size 1080x640.</span> 
+    <span class="field_description">Upload an image or screenshot of your app. Ideal size 1080x640.</span> 
 </p>
 </fieldset>          
 
