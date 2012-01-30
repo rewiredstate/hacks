@@ -1,7 +1,7 @@
 <% content_for(:title) { "#{@project.title} - #{@event.title}" } %>
 <div id="project_control">
-    <div class="left"><h1><%= @project.title %></h1> <h2>by <%= @project.team %></h2></div>
-	<div class="right"><%= link_to "Edit project", edit_event_project_url(@event,@project), :class => 'action' %></div> 
+    <div class="left heading"><h1><%= @project.title %></h1> <h2>by <%= @project.team %></h2></div>
+	<div class="right action"><%= link_to "Edit project", edit_event_project_url(@event,@project), :class => 'action' %></div> 
 	<div class="clear"></div>
     
     <% if flash[:notice] -%>
