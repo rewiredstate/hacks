@@ -13,6 +13,10 @@ class Event < ActiveRecord::Base
   def to_param
     self.slug
   end       
+
+  def winners
+    self.award_categories.all.map {|i| i.award_winners.all }.flatten.uniq
+  end
   
   def has_secret?
     !self.secret.nil?
