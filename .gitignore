@@ -1,7 +1,8 @@
 .bundle
+*.DS_Store
+.powrc
+.sass-cache/
 db/*.sqlite3
 log/*.log
+public/system/
 tmp/
-.sass-cache/
-.powrc
-*.DS_Store
