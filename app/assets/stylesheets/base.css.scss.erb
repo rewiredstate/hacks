@@ -1,0 +1,153 @@
+/*
+
+REWIRED STATE
+=============
+
+Main CSS Stylesheet
+-------------------
+
+### Colours
+
+- Red: #B63322
+
+*/
+
+body { background: #111111; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 17px; text-align: center; }
+
+/** Common Classes **/
+
+.left, .alignleft { float: left; }
+.right, .alignright { float: right; }
+.clear { clear: both; }
+.wrap { margin: auto; text-align: left; width: 960px; }
+
+
+/** Header **/
+
+#header { background: #111111; height: auto; padding: 0px; }
+
+#header #logo { float: left; }
+#header #logo a { background: url(<%= asset_path 'small-logo.png' %>) no-repeat top left; display: block; height: 50px; text-indent: -9999px; width: 285px; }
+
+#header #navigation { float: right; }
+#header #navigation li { display: block; float: left; margin: 11px 0px 0px 6px; }
+#header #navigation li a, #header #navigation li a:link, #header #navigation li a:visited {
+  border: 1px solid transparent;
+  color: #f0f0f0;
+  display: block;
+  font-weight: 400;
+  padding: 5px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#header #navigation li.selected a, #header #navigation li.current-menu-item a, #header #navigation li.current-page-ancestor a, #header #navigation li a:hover {
+  border: 1px solid #6A1D13 !important;
+  background: #B63322;
+}
+
+#content {
+  background: #fff;
+  color: #222;
+  border-top: 2px solid #ccc;
+  padding: 15px 0px 20px;
+}
+
+.content { width:70%; margin:0 auto; }
+.content.full { width: 100%; }
+
+/** Content Styles **/
+
+#content h1, h2, h3, h4 { color: #B63322; font-family: 'Bitter', Helvetica, Arial, sans-serif; font-weight: lighter; margin-bottom: 15px; }
+#content h1 { font-size: 2.8em; line-height: 38px; margin: 0.3em 0; }
+#content h2 { font-size: 2.2em; margin: 25px 0px 15px; }
+#content h3 { font-size: 1.8em; }
+#content h4 { font-size: 1.2em; }
+#content p { color: #555; font-size: 1.2em; line-height: 1.2em; margin: 0.5em 0; }
+
+#content ol, #content ul { margin: 12px 0px 12px 20px; }
+/*#content ol li { list-style: decimal outside; margin-bottom: 2px; }*/
+#content ul li { list-style: disc outside; margin-bottom: 2px; }
+
+#content img { background: #eee; border: 1px solid #ccc; padding: 5px; }
+#content img.alignright { float: right; clear: right; margin: 10px 0px 10px 20px; }
+#content img.alignleft { float: left; clear: left; margin: 10px 10px 10px 0px; }
+
+#content a, #content a:link, #content a:visited { color: #777; text-decoration: underline; }
+#content a:hover, #content a:active { color: #222; text-decoration: underline; }
+
+#content .sidebar { border-right: 1px solid #ddd; width: 230px; }
+#content .sidebar .inner { padding: 10px 20px 10px 10px; }
+
+#content .sidebar ul { margin: 0px; }
+#content .sidebar li { list-style: none; margin: 0px; }
+#content .sidebar ul li ul { margin-left: 10px; }
+#content .sidebar li a, #content .sidebar li a:link, #content .sidebar li a:visited {
+  border-bottom: 1px solid #ccc;
+  color: #555;
+  display: block;
+  text-decoration: none;
+  padding: 5px;
+}
+#content .sidebar li a:hover, #content .sidebar li a:active {
+  background: #e0e0e0;
+  color: #B63322;
+}
+#content .sidebar li a.sel { background: #ddd;}
+#content .sidebar h3 { font-size: 24px; }
+
+#content .main { width: 700px; }
+
+#content .project-left-col { float: left; width: 600px; }
+#content .project-right-col { float: right; width: 300px; }
+#content .project-right-col p { margin-bottom: 15px; }
+
+#content .event-left-col { float: left; margin-top: -10px; width: 600px; }
+#content .event-right-col { border-left: 1px solid #ddd; float: right; padding-left: 20px; width: 300px; }
+#content .event-right-col p { margin-bottom: 15px; }
+#content .event-left-col p {  }
+#content .event-left-col p.date { color: #777; font-size: 16px; padding-bottom: 5px; border-bottom: 1px solid #ccc; }
+
+#content .projects_list h3 { border-bottom: 1px solid #bbb; font-size: 22px; font-weight: lighter; padding-bottom: 5px; margin: 15px 0px 5px; }
+#content .projects_list h3 a { text-decoration: none; }
+
+
+/* Events and Calendar items */
+#content ul.dbem_events_list {margin: 25px 0 0; padding:0;list-style-type:none; width: 960px;}
+#content ul.dbem_events_list li {clear:left; padding: 5px 0; margin:0px 0 10px; list-style: none; border-bottom:solid 1px #ddd;}
+
+#content ul.dbem_events_list li h4 { border-bottom: 1px solid #bbb; font-size: 22px; font-weight: lighter; padding-bottom: 5px; margin-bottom: 0px; }
+#content ul.dbem_events_list li h4 a { text-decoration: none; }
+#content ul.dbem_events_list li h4, ul.dbem_events_list li p.excerpt { float: right; text-align: left; width: 820px; }
+#content p.cal {padding:4px; margin:10px 0px 20px; border:solid 6px #b63322; text-align:center; float:left;
+    -moz-border-radius: 10px;-moz-box-shadow: 1px 1px 1px #ccc;-moz-transform:rotate(-15deg);
+    -webkit-border-radius: 10px;-webkit-box-shadow: 1px 1px 1px #ccc;-webkit-transform:rotate(-15deg);
+    border-radius: 10px;box-shadow: 1px 1px 1px #ccc;transform:rotate(-15deg);
+    }
+#content p.cal span {display:block;color:#808080; font-size:0.9em;}
+
+/** Footer **/
+
+#footer { color: #c0c0c0; margin: 20px 0px 20px; }
+#footer .footer_line { margin-bottom: 10px; }
+
+#footer a, #footer a:link, #footer a:visited { color: #fff; text-decoration: none; }
+#footer a:hover, #footer a:active { color: #F5A7A1; text-decoration: underline; }
+
+
+/** From old CSS **/
+
+.post-navigation { border-bottom: 1px solid #ccc; font-size: 13px; margin-bottom: 10px; padding: 10px 0px; }
+.post-navigation .next { float: right; }
+.post-navigation .previous { float: left; }
+.post-navigation .end { clear: both; }
+
+li .cal { float: left; width: 100px; }
+li .excerpt { float: right; margin: -10px 0px 20px; width: 660px; }
+li .excerpt p { margin: 0.5em 0;}
+li .end { clear: both; }
+
+.meta { border-bottom: 1px solid #ccc; color: #777; font-size: 13px; padding-bottom: 10px; }
+
+.edit_link { border-top: 1px solid #ccc; font-size: 13px; padding-top: 10px; }
+
+hr { background-color: #bbb; border: none; color: #bbb; height: 1px; }

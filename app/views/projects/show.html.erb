@@ -1,56 +1,52 @@
 <% content_for(:title) { "#{@project.title} - #{@event.title}" } %>
 <div id="project_control">
     <div class="left heading"><h1><%= @project.title %></h1> <h2>by <%= @project.team %></h2></div>
-	<div class="right action"><%= link_to "Edit project", edit_event_project_url(@event,@project), :class => 'action' %></div> 
+	<div class="right action"><%= link_to "Edit project", edit_event_project_path(@event,@project), :class => 'action' %></div>
 	<div class="clear"></div>
-    
-    <% if flash[:notice] -%>
-    <div class="success"><%= flash[:notice] %></div>
-    <% end -%>
-    
-    <div class="feature <%= "empty" unless @project.image.present? %>">                            
+
+    <div class="feature <%= "empty" unless @project.image.present? %>">
         <% if @project.image.present? -%>
             <%= image_tag @project.image.url(:project) %>
-        <% else -%>                    
+        <% else -%>
         <div class="no_picture">
             <h3><%= no_picture_message %></h3>
             <p>We don't have a screenshot of <strong><%= @project.title %></strong> yet! If you are the owner, add one to enhance your project entry.</p>
         </div>
         <% end -%>
     </div>
-    <div class="intro">  
+    <div class="intro">
         <div class="inner">
             <%= @project.summary %>
             <%= link_to "Read more", "#description", :class => "more" %>
         </div>
-    </div>                                                              
+    </div>
     <div class="links">
         <div class="inner">
             <ul>
                 <li class="icon_url">Project URL: <%= link_to @project.format_url(@project.url), @project.url rescue "<em>None</em>".html_safe %></li>
-                
+
                 <% if @project.github_url.present? -%><li class="icon_github">GitHub: <%= link_to @project.formatted_github_url, @project.github_url %></li>
                 <% elsif @project.svn_url.present? -%><li class="icon_code">SVN URL: <%= link_to @project.format_url(@project.svn_url), @project.svn_url %></li>
-                <% elsif @project.code_url.present? -%><li class="icon_code">Code URL: <%= link_to @project.format_url(@project.code_url), @project.code_url %></li><% end -%>             
-                
+                <% elsif @project.code_url.present? -%><li class="icon_code">Code URL: <%= link_to @project.format_url(@project.code_url), @project.code_url %></li><% end -%>
+
                 <% if @project.twitter.present? -%><li class="icon_twitter">Twitter: <%= twitter_links_for(@project) %></li><% end -%>
             </ul>
         </div>
     </div>
     <div class="clear clearpad"></div>
-                      
-    <% if @project.has_won_award? -%>                                                   
+
+    <% if @project.has_won_award? -%>
         <% @project.award_categories.each do |award| -%>
             <div class="award award_<%= award.format %> <%= (award.level.nil?) ? "" : "level_#{award.level}" %>">
                 <p class="summary"><%= @project.title %> <%= award.project_action %> <strong><%= award.title %></strong> at <%= @event.title %>!</p>
                 <% if award.description -%><p class="description"><%= award.description %></p><% end -%>
-            </div>                                            
+            </div>
         <% end -%>
-    <% end -%> 
-    
+    <% end -%>
+
     <!--<div class="column left">
-        
-    </div>                 
+
+    </div>
     <div class="column right">-->
         <div id="description">
             <%= mkdn @project.description %>
@@ -66,14 +62,14 @@
                 <h3>Ideas for taking <%= @project.title %> forwards</h3>
                 <%= mkdn @project.ideas %>
             </div>
-        <% end -%>                  
+        <% end -%>
         <% unless @project.costs.nil? or @project.costs.empty? -%>
             <div class="markdown_box project_costs">
                 <h3>Estimated costs to take <%= @project.title %> forwards</h3>
                 <%= mkdn @project.costs %>
             </div>
-        <% end -%>        
-    <!--</div>          
+        <% end -%>
+    <!--</div>
     <div class="clear"></div>-->
-    
+
 </div>

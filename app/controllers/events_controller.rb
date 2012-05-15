@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   private
     def find_event
       @event = Event.find_by_slug(params[:id]) || not_found
-      breadcrumbs.add @event.title, event_url(@event)
+      breadcrumbs.add @event.title, event_path(@event)
     end
 
 end

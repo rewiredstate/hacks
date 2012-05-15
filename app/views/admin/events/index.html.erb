@@ -1,0 +1,20 @@
+<% content_for(:title) { "Events" } %>
+
+<h1>Events</h1>
+
+<p><%= link_to "Add a new event", new_admin_event_path, :class => "btn icon icon_new" %></p>
+
+<table>
+  <tbody>
+    <thead>
+      <tr>
+        <th scope="col">Event Title</th>
+        <th scope="col">Slug</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <%= render :partial => "event", :collection => collection %>
+  </tbody>
+</table>

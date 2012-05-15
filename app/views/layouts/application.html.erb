@@ -1,65 +1,72 @@
 <!doctype html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <title><%= (content_for?(:title)) ? content_for(:title) + " - " : "" %>Rewired State</title>
-                                                 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application" %>
+  <title><%= (content_for?(:title)) ? content_for(:title) + " - " : "" %>Rewired State</title>
 
-    <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" /> 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />  
-</head> 
+  <%= csrf_meta_tags %>
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
 <body>
-    <!-- full width header -->
-    <div id="header">        
-        <div class="wrap">
-
-            <h1 id="logo"><a href="http://rewiredstate.org/" title="Rewired State Homepage">Rewired State</a></h1>
-            <ul id="navigation">                       
-                <li><a href="http://rewiredstate.org/">&larr; Back to rewiredstate.org</a></li>
-            </ul>
-            <div class="clear"></div>
-        </div>
+  <!-- full width header -->
+  <div id="header">
+    <div class="wrap">
+      <h1 id="logo"><a href="http://rewiredstate.org/" title="Rewired State Homepage">Rewired State</a></h1>
+      <ul id="navigation">
+          <li><a href="http://rewiredstate.org/">&larr; Back to rewiredstate.org</a></li>
+      </ul>
+      <div class="clear"></div>
     </div>
+  </div>
 
-    <div id="content"> 
-        <div class="wrap">
-            <div class="breadcrumbs">
-                <ol>
-					<li class="crumb_home"><a href="<%= root_url %>" title="Home">Home</a></li> 
-					<%= breadcrumbs.render(:format => :SoleListItem) %>
-				</ol>
-			</div>   
-            <% if content_for?(:sidebar) -%>
-            <div class="sidebar left">
-                <div class="inner">
-                    <%= content_for(:sidebar) %>		
-                </div>
-            </div>                              
-            <div class="main right">  
-                <%= yield %>          
-            </div>                    
-            <div class="clear"></div>
-            <% else -%>
-            <div class="fullwidth">
-                <%= yield %>
+  <div id="content">
+    <div class="wrap">
+        <div class="breadcrumbs">
+          <ol>
+  					<li class="crumb_home"><a href="<%= root_path %>" title="Home">Home</a></li>
+  					<%= breadcrumbs.render(:format => :SoleListItem) %>
+  				</ol>
+  			</div>
+        <% if admin_signed_in? %>
+          <%= render :partial => 'admin/shared/user' %>
+        <% end %>
+
+        <% if flash[:notice] %>
+          <div class="success"><%= flash[:notice] %></div>
+        <% end -%>
+
+        <% if content_for?(:sidebar) -%>
+          <div class="sidebar left">
+            <div class="inner">
+                <%= content_for(:sidebar) %>
             </div>
-            <% end -%>
-        </div><!-- /wrap -->                        
-    </div><!-- /content -->
+          </div>
+          <div class="main right">
+            <%= yield %>
+          </div>
+          <div class="clear"></div>
+          <% else -%>
+          <div class="fullwidth">
+            <%= yield %>
+          </div>
+        <% end -%>
+      </div><!-- /wrap -->
+  </div><!-- /content -->
 
-    <div id="footer">
-        <div class="wrap">
+  <div id="footer">
+    <div class="wrap">
 
-            <div class="copyright left">&copy; <a href="http://companiesopen.org/uk/07149780/rewired-state-ltd">Rewired State Ltd</a></div>  
+        <div class="copyright left">&copy; <a href="http://companiesopen.org/uk/07149780/rewired-state-ltd">Rewired State Ltd</a></div>
 
-            <div class="clear"></div>
-        </div>
+        <div class="clear"></div>
     </div>
-            
-    <%= stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Bitter" %>
+  </div>
+
+  <%#= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Bitter" %>
 </body>
 </html>

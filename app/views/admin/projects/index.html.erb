@@ -1,0 +1,19 @@
+<% content_for(:title) { "Hacks" } %>
+
+<h1>Hacks</h1>
+
+<table>
+  <tbody>
+    <thead>
+      <tr>
+        <th scope="col">Hack Title</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Team</th>
+        <th scope="col">Awards</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <%= render :partial => "project", :collection => collection %>
+  </tbody>
+</table>

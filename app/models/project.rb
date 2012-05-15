@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :event
+  include Manageable
 
   has_paper_trail
 
@@ -9,14 +10,19 @@ class Project < ActiveRecord::Base
   has_many :awards
   has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
 
-  has_attached_file :image,
-    :styles => { :full => ["1080x640#", :jpg], :project => ["540x320#", :jpg], :mini => ["270x160#", :jpg], :thumb => ["140x83#", :jpg] },
-    :storage => :s3,
-    :bucket => ENV['S3_BUCKET'],
-    :s3_credentials => {
-      :access_key_id => ENV['S3_KEY'],
-      :secret_access_key => ENV['S3_SECRET']
+  attr_accessible :title, :team, :url, :secret, :my_secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url
+  attr_accessible :title, :team, :url, :secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url, :awards_attributes, :slug, :as => :admin
+
+  accepts_nested_attributes_for :awards, :reject_if => :all_blank, :allow_destroy => true
+
+  has_attached_file( :image, Rails.application.config.attachment_settings.merge({
+    :styles => {
+      :full => ["1080x640#", :jpg],
+      :project => ["540x320#", :jpg],
+      :mini => ["270x160#", :jpg],
+      :thumb => ["140x83#", :jpg]
     }
+  }) )
 
   comma do
     title "Project Name"
@@ -40,14 +46,12 @@ class Project < ActiveRecord::Base
   validates_attachment_presence :image, :on => :create
   validates_attachment_size :image, :less_than=>1.megabyte, :if => Proc.new { |i| !i.image.file? }
 
-  validates_each :my_secret, :on => :create, :if => :event_secret_required? do |model, attr, value|
-    model.errors.add(attr, 'is incorrect') if (value != model.event.secret)
-  end
-  validates_each :my_secret, :on => :update do |model, attr, value|
-    if model.secret_required?
-      model.errors.add(attr, 'is incorrect') if (value != model.secret)
-    else # event secret required
-      model.errors.add(attr, 'is incorrect') if (value != model.event.secret)
+  with_options :unless => :managing do |o|
+    o.validates_each :my_secret, :on => :create, :if => :event_secret_required? do |model, attr, value|
+      model.errors.add(attr, "is incorrect") if (value != model.event.secret)
+    end
+    o.validates_each :my_secret, :on => :update do |model, attr, value|
+      model.errors.add(attr, 'is incorrect') if (value != model.project_or_event_secret)
     end
   end
 
@@ -60,7 +64,11 @@ class Project < ActiveRecord::Base
   end
 
   def secret_required?
-    !self.event.has_secret?
+    ! self.event_secret_required?
+  end
+
+  def project_or_event_secret
+    self.event_secret_required? ? self.event.secret : self.secret
   end
 
   def format_url(url)
@@ -90,7 +98,7 @@ class Project < ActiveRecord::Base
 
   private
     def create_slug
-      self.slug = self.title.parameterize if !self.slug or self.slug.empty?
+      self.slug = (self.title || "").parameterize if self.slug.blank?
     end
 
     def blank_url_fields

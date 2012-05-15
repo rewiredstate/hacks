@@ -1,16 +1,16 @@
 <% awards = project.award_categories if project.has_won_award? %>
-<li <%= (winners == true) ? "class='award_#{awards.first.format} level_#{awards.first.level}'" : "" %>>                                                                                        
-    <div class="image left"> 
-        <a href="<%= event_project_url(@event,project) %>">
+<li <%= (winners == true) ? "class='award_#{awards.first.format} level_#{awards.first.level}'" : "" %>>
+    <div class="image left">
+        <a href="<%= event_project_path(@event,project) %>">
         <% if project.image.present? -%>
             <%= image_tag project.image.url(:thumb) %>
-        <% end -%>                                        
+        <% end -%>
         </a>
     </div>
     <div class="right">
-        <h3><%= link_to project.title, event_project_url(@event, project) %></h3>
+        <h3><%= link_to project.title, event_project_path(@event, project) %></h3>
         <div class="project_team">by <%= project.team %></div>
-        <% if project.has_won_award? -%>                        
+        <% if project.has_won_award? -%>
             <div class="project_award award_<%= awards.first.format %> level_<%= awards.first.level %>"><%= awards.map(&:title).join(', ') %></div>
         <% end -%>
         <div class="project_summary"><%= project.summary %></div>

@@ -6,6 +6,6 @@
 
 <ul>
   <% @events.each do |event| %>
-  <li><%= link_to event.title, event_url(event) %></li>
+  <li><%= link_to event.title, event_path(event) %></li>
   <% end %>
 <ul>

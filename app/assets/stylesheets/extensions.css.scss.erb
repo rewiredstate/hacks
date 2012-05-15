@@ -1,0 +1,86 @@
+table, #content table {
+  background: #f6f6f6;
+  width: 100%;
+  td, th { font-size: 1.1em; padding: 0.5em; border: 1px solid #ccc;
+    ul, ol { margin: 0; }
+    ul.awards {
+      li { list-style: none; background: url(<%= asset_path 'icons/mini_special_mention.png' %>) no-repeat center left; padding-left: 24px; margin: 0.3em 0; }
+    }
+  }
+  th {
+    font-weight: bold;
+    background: #bbb;
+    border-color: #888;
+    background-image: -webkit-linear-gradient(#bbb, #999);
+    text-shadow: #888 0px 1px 1px ;
+    color: #fff;
+  }
+}
+
+.breadcrumbs { }
+#content .breadcrumbs ol { margin: 0; }
+.breadcrumbs li { background: url(<%= asset_path 'breadcrumb.png' %>) no-repeat left 4px; display: inline; padding: 0px 6px 0px 12px; }
+.breadcrumbs li a { text-decoration: none; font-size: 12px; }
+.breadcrumbs li a:hover { color: #888; }
+
+.breadcrumbs li.crumb_home { background: none; padding: 0px; }
+.breadcrumbs li.crumb_home a {
+  background: url(<%= asset_path 'home.gif' %>) no-repeat 0px 2px;
+  text-indent: -9999px;
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+}
+.breadcrumbs li.crumb_home a:hover { opacity: 0.5; }
+
+#content {
+  .admin_controls {
+    float: right;
+    font-size: 0.9em;
+    margin-top: -1.5em;
+
+    p { margin: 0; padding-left: 24px; background: url(<%= asset_path 'icons/user.png' %>) no-repeat left center; }
+  }
+}
+
+a.action { border: 1px solid #ccc; display: inline-block; margin: 1.8em 0 0.8em; padding: 5px 8px; }
+a.action:hover, a.action:active { border-color: #999; color: #333; }
+
+.success { background: #589100; box-shadow: #ddd 2px 2px 2px; font-size: 1.2em; font-weight: bold; color: #fff; margin: 1em 0; padding: 0.75em; }
+
+/* Formtastic Addons */
+
+#content {
+  .formtastic {
+    font-size: 1.2em;
+    ol, ul { margin: 0; }
+    .input {
+      label { width: 18%;  }
+    }
+    .buttons, .actions { padding-left: 18%; }
+    .input { margin-bottom: 0; }
+    .inputs {
+      background: #f6f6f6;
+      margin: 1em 0;
+      padding: 1em;
+    }
+    .input.error {
+      input, textarea, select { border: 2px solid #c31f1c; }
+      .inline-errors { display: inline-block; background: #c31f1c; color: #fff; font-size: 0.75em; padding: 0.5em 0.85em; margin-top: -1em; float: left; }
+    }
+    .inputs .fields {
+      margin: 0.6em 0;
+      padding: 1em;
+      background: #e6e6e6;
+      .remove_nested_fields { margin-left: 18%; }
+    }
+    legend {
+      display: block;
+      font-family: 'Bitter', Helvetica, Arial, sans-serif;
+      margin: 1em 0;
+      font-size: 1.2em;
+      span { font-weight: bold; }
+    }
+    input[type=text], input[type=url], input[type=email], textarea { padding: 0.5em; }
+  }
+}
