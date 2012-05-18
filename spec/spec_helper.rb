@@ -20,9 +20,13 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
+
   config.infer_base_class_for_anonymous_controllers = false
 end
 
 def stub_uploaded_image(filename = 'image.jpg')
+  Project.stub!(:has_attached_file).with(:image).and_return(true)
   File.new("spec/fixtures/paperclip/#{filename}")
 end

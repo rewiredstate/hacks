@@ -1,5 +1,10 @@
 FactoryGirl.define do
 
+  factory :admin do
+    email "admin@rewiredstate.org"
+    password "password"
+  end
+
   factory :event do
     sequence(:title) {|n| "Hack all the things ##{n}"}
     sequence(:slug) {|n| "hack-everything-#{n}"}
