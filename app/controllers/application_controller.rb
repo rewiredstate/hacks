@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
     # breadcrumbs.add "Events", "http://rewiredstate.org/events"
     breadcrumbs.add "Hacks", root_path
   end
+
+  private
+    def after_sign_out_path_for(resource_or_scope)
+      new_admin_session_path
+    end
 end

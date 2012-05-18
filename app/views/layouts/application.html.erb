@@ -36,9 +36,9 @@
           <%= render :partial => 'admin/shared/user' %>
         <% end %>
 
-        <% if flash[:notice] %>
-          <div class="success"><%= flash[:notice] %></div>
-        <% end -%>
+        <% flash.each do |key,message| %>
+          <div class="flash flash_<%= key %>"><%= message %></div>
+        <% end %>
 
         <% if content_for?(:sidebar) -%>
           <div class="sidebar left">

@@ -46,7 +46,26 @@ table, #content table {
 a.action { border: 1px solid #ccc; display: inline-block; margin: 1.8em 0 0.8em; padding: 5px 8px; }
 a.action:hover, a.action:active { border-color: #999; color: #333; }
 
-.success { background: #589100; box-shadow: #ddd 2px 2px 2px; font-size: 1.2em; font-weight: bold; color: #fff; margin: 1em 0; padding: 0.75em; }
+.flash { box-shadow: #ddd 2px 2px 2px; font-size: 1.2em; font-weight: bold; color: #fff; margin: 1em 0; padding: 0.75em; }
+.flash.flash_notice, .flash.flash_success { background: #589100; }
+.flash.flash_alert { background: #cd3823; }
+
+/* User Account Stuff */
+
+.user_account {
+  background: #f0f0f0;
+  border-left: 4px solid #B63322;
+  margin: auto;
+  padding: 1em;
+  margin: 1em 0;
+
+  input { font-size: 1.2em; padding: 0.3em; }
+  input[type=text], input[type=email], input[type=password] { display: block; }
+  label { font-size: 1.1em; color: #555; display: inline-block; margin: 0.4em 0; }
+  form > div { margin: 0.5em 0; }
+  form { margin: 1.5em 0; }
+}
+#content .user_account h2 { margin: 0.5em 0 0.75em; }
 
 /* Formtastic Addons */
 
