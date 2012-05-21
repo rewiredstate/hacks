@@ -10,7 +10,7 @@ describe Admin::ProjectsController do
     describe "GET 'index'" do
       it "should redirect to the login form" do
         get :index, :event_id => @event.id
-        response.should be_redirect
+        response.should redirect_to(new_admin_session_path)
       end
     end
   end
@@ -54,7 +54,7 @@ describe Admin::ProjectsController do
 
         it "should redirect to the project list" do
           put :update, :event_id => @event.slug, :id => @project.slug, :project => @valid_attributes
-          response.should be_redirect
+          response.should redirect_to(admin_event_projects_path(@event))
         end
       end
 

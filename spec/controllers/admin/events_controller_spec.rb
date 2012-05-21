@@ -49,7 +49,7 @@ describe Admin::EventsController do
 
         it "should redirect to the event list" do
           post :create, :event => @valid_attributes
-          response.should be_redirect
+          response.should redirect_to(admin_events_path)
         end
       end
 
