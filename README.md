@@ -34,3 +34,12 @@ We're using RSpec for model and controller testing. To run all the tests:
 ## Colophon
 
 * Award icons from [Farm-Fresh](http://www.fatcow.com/free-icons)
+
+## Contributors
+
+* [Jordan Hatch](http://jordanh.net/)
+* [Adam McGreggor](http://blog.amyl.org.uk/)
+
+## License
+
+MIT License
