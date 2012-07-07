@@ -1,8 +1,11 @@
 class EventsController < ApplicationController
   before_filter :find_event, :except => :index
 
+  respond_to :html, :json
+
   def index
     @events = Event.all
+    respond_with @events
   end
 
   def show
