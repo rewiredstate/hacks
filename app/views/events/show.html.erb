@@ -19,11 +19,56 @@
 </div>
 <% end -%>
 
-<div class="projects">
-    <h2>All <%= pluralize @event.projects.size, "projects" %></h2>
-	<ul>
-		<% @event.projects.each do |project| -%>
-		    <%= render :partial => 'single_project', :locals => {:project => project, :winners => false} %>
-		<% end -%>
-	</ul>
+<h2>All <%= pluralize @event.projects.size, "projects" %></h2>
+
+<div class="centres">
+    <ul class="centre_selection">
+        <li><a href="#">Working remotely <span>10</span></a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">London</a></li>
+        <li><a href="#">Preston</a></li>
+        <li><a href="#">Shoreditch</a></li>
+        <li><a href="#">Birmingham</a></li>
+        <li><a href="#">Sheffield</a></li>
+        <li><a href="#">Carlisle</a></li>
+        <li><a href="#">Newcastle</a></li>
+        <li><a href="#">Cardiff</a></li>
+        <li><a href="#">Bristol</a></li>
+        <li><a href="#">Plymouth</a></li>
+        <li><a href="#">Reading</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+        <li><a href="#">Manchester</a></li>
+    </ul>
+    <div class="projects">
+        <ul>
+            <% @event.projects.each do |project| -%>
+                <%= render :partial => 'single_project', :locals => {:project => project, :winners => false} %>
+            <% end -%>
+        </ul>
+    </div>
+    <div class="clear"></div>
 </div>
