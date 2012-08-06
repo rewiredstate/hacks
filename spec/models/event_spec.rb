@@ -33,6 +33,16 @@ describe Event do
         @event_one.slug.should == "event-title"
         @event_two.slug.should == "event-title-2"
       end
+
+      it "does not use centres by default" do
+        @event = Event.create!( @valid_attributes )
+        @event.use_centres.should be_false
+      end
+
+      it "can be created as an event with centres" do
+        @event = Event.create!( @valid_attributes.merge({:use_centres => true}) )
+        @event.use_centres.should be_true
+      end
     end
 
     context "given invalid attributes" do
@@ -66,6 +76,30 @@ describe Event do
 
       @event.update_attributes!({ :award_categories_attributes => [{ :id => @award_category.id, :'_destroy' => '1' }] })
       @event.award_categories.count.should == 0
+    end
+  end
+
+  describe "creating centres for events" do
+    before do
+      @event = FactoryGirl.create(:event)
+      @centre_atts = {
+        :name => 'Manchester',
+        :slug => 'manchester'
+      }
+    end
+
+    it "can accept attributes for a centre" do
+      @event.update_attributes!({ :centres_attributes => [ @centre_atts ] })
+
+      @event.centres.should be_any
+      @event.centres.first.name.should == "Manchester"
+    end
+
+    it "cannot remove a centre" do
+      @centre = @event.centres.create!(@centre_atts)
+
+      @event.update_attributes!({ :centres_attributes => [{ :id => @centre.id, :'_destroy' => '1' }] })
+      @event.centres.count.should == 1
     end
   end
 

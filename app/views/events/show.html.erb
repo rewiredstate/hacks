@@ -5,70 +5,19 @@
 <div class="clear"></div>
 
 <div class="migrate_rs">
-    <%= link_to "See the full event details", "http://rewiredstate.org/events/#{@event.slug}" %>
+  <%= link_to "See the full event details", ( @event.url.blank? ? "http://rewiredstate.org/events/#{@event.slug}" : @event.url ) %>
 </div>
 
-<% if @event.winners.count > 0 -%>
-<div class="winners">
-    <h2><%= pluralize @event.winners.count, "winner" %></h2>
+<% if @event.winners.any? %>
+    <%= render :partial => 'display_winners' %>
+<% end %>
 
-    <ul><% @event.winners.each do |project| -%>
-        <%= render :partial => 'single_project', :locals => {:project => project, :winners => true} %>
-    <% end -%>
-    </ul>
-</div>
-<% end -%>
+<div class="all_projects">
+  <h2><%= pluralize @event.projects.size, "projects" %><% if @event.use_centres %> from <%= pluralize @event.centres.size, "centres" %><% end %></h2>
 
-<h2>All <%= pluralize @event.projects.size, "projects" %></h2>
-
-<div class="centres">
-    <ul class="centre_selection">
-        <li><a href="#">Working remotely <span>10</span></a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">London</a></li>
-        <li><a href="#">Preston</a></li>
-        <li><a href="#">Shoreditch</a></li>
-        <li><a href="#">Birmingham</a></li>
-        <li><a href="#">Sheffield</a></li>
-        <li><a href="#">Carlisle</a></li>
-        <li><a href="#">Newcastle</a></li>
-        <li><a href="#">Cardiff</a></li>
-        <li><a href="#">Bristol</a></li>
-        <li><a href="#">Plymouth</a></li>
-        <li><a href="#">Reading</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-        <li><a href="#">Manchester</a></li>
-    </ul>
-    <div class="projects">
-        <ul>
-            <% @event.projects.each do |project| -%>
-                <%= render :partial => 'single_project', :locals => {:project => project, :winners => false} %>
-            <% end -%>
-        </ul>
-    </div>
-    <div class="clear"></div>
+  <% if @event.use_centres %>
+    <%= render :partial => 'display_centres' %>
+  <% else %>
+    <%= render :partial => 'display_standard' %>
+  <% end %>
 </div>

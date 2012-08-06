@@ -1,0 +1,8 @@
+<div class="winners">
+    <h2><%= pluralize @event.winners.count, "winner" %></h2>
+
+    <ul><% @event.winners.each do |project| -%>
+        <%= render :partial => 'single_project', :locals => {:project => project, :winners => true} %>
+    <% end -%>
+    </ul>
+</div>

@@ -3,94 +3,95 @@
   h1, h2 { display: inline-block; vertical-align: baseline; }
 	h2 { font-size: 22px; padding-left: 10px; color: #666; line-height: 27px; margin: 0em auto; }
 
-  .left.heading { width: 700px; margin: 0.5em 0 2em; }
+  .left.heading { width: 700px; margin: 0.5em 0 1em; }
 
 	.feature { background: #fff; border: 1px solid #ccc; float: left; height: 320px; width: 540px; }
-	.feature.empty { text-align: center; 
-		.no_picture { background: url(<%= asset_path 'no_screenshot.png' %>) no-repeat center 40px; padding: 180px 0; margin: 0 auto; text-align: center; width: 450px; 
+	.feature.empty { text-align: center;
+		.no_picture { background: url(<%= asset_path 'no_screenshot.png' %>) no-repeat center 40px; padding: 180px 0; margin: 0 auto; text-align: center; width: 450px;
 			h3 { font-family: Helvetica, Arial, sans-serif; font-weight: bold; color: #444; text-shadow: #ccc 0px 1px 1px; font-size: 1.5em; }
 			p { color: #888; font-size: 1.1em; }
 		}
 	}
-	.feature img { padding: 0; border: none; }     
-	.intro, .links { width: 400px; float: right; 
-		.inner { padding: 18px; }                 
+	.feature img { padding: 0; border: none; }
+	.intro, .links { width: 400px; float: right;
+		.inner { padding: 18px; }
 	}
-	.intro { background: #D7F3FF; border: 1px solid #779DAC; font-size: 1.4em; line-height: 22px;                        
+	.intro { background: #D7F3FF; border: 1px solid #779DAC; font-size: 1.4em; line-height: 22px;
 		.more { display: inline-block; float: right; margin: 0.5em 0 0.8em; font-size: 0.8em; }
-	}  
-	.links { background: #eee; border: 1px solid #ccc; margin: 1em 0 0; 
-		ul { margin: 0 !important; 
+	}
+	.links { background: #eee; border: 1px solid #ccc; margin: 1em 0 0;
+		ul { margin: 0 !important;
 			li { background: transparent no-repeat left center; font-size: 1.1em; margin: 0.5em 0; list-style: none; padding-left: 22px; }
 			li.icon_url { background-image: url(<%= asset_path 'icons/url.png' %>); }
 			li.icon_github { background-image: url(<%= asset_path 'icons/github.png' %>); }
 			li.icon_code { background-image: url(<%= asset_path 'icons/code.png' %>); }
 			li.icon_twitter { background-image: url(<%= asset_path 'icons/twitter.png' %>); }
 		}
-	}                          
-	                                                              
-    .award { background: #eee; border: 1px solid #ccc; padding: 1em; margin-bottom: 1em;  
+	}
+
+    .award { background: #eee; border: 1px solid #ccc; padding: 1em; margin-bottom: 1em;
         p { margin: 0em; text-align: center; }
         p.summary { font-size: 1.2em; }
         p.description { margin-top: 0.3em; font-size: 1.1em; color: #777;  }
-    }                                          
+    }
     .award.award_overall.level_1 { background: #FFF4E6 url(<%= asset_path 'icons/first_overall.png' %>) no-repeat center 11px; padding-top: 50px; border-color: #C6A053; }
 	.award.award_overall.level_2 { background: #eee url(<%= asset_path 'icons/second_overall.png' %>) no-repeat center 11px; padding-top: 50px; border-color: #aaa; }
 	.award.award_mention { background: #EDE7FF url(<%= asset_path 'icons/special_mention.png' %>) no-repeat center 11px; padding-top: 50px; border-color: #86659A; }
-	                                                   
+
 	#description p { font-family: Georgia, Times, sans-serif; font-size: 1.3em; font-style: italic; line-height: 1.3em; margin-bottom: 1em;  }
-	
-	.clear.clearpad { padding-top: 1.2em; } 
-	
-	.markdown_box { border: 1px solid #ccc; margin: 1.1em 0; padding: 0.8em; 
+
+	.clear.clearpad { padding-top: 1.2em; }
+
+	.markdown_box { border: 1px solid #ccc; margin: 1.1em 0; padding: 0.8em;
 		h3 { font-size: 1.2em; }
 		p { font-size: 1.15em; line-height: 1.1em; }
 	}
 	.markdown_box h3 { font-size: 1.2em; }
-	.markdown_box {  }  
-	                                     
+	.markdown_box {  }
+
 	.column.left { width: 250px; }
 	.column.right { width: 670px; }
 
-}                      
+}
 
 #project_form {
-    
-    .required { color: red; font-weight: bold; } 
-                                     
+
+    .required { color: red; font-weight: bold; }
+
     form {
         border-top: 1px solid #ccc;
         margin: 1em 0;
         padding: 0.8em 0 0;
-        
+
         p { margin: 0.7em 0; }
-        
-        label { font-weight: bold; color: #555; display: block; margin: 0.5em 0; 
+
+        label { font-weight: bold; color: #555; display: block; margin: 0.5em 0;
             span { color: red; font-weight: bold; }
-        } 
-        input, textarea { border: 1px solid #bbb; font-family: Helvetica, sans-serif; padding: 8px; font-size: 1.2em; width: 600px; vertical-align: middle; }
+        }
+        input, textarea, select { border: 1px solid #bbb; font-family: Helvetica, sans-serif; padding: 8px; font-size: 1.2em; width: 600px; vertical-align: middle; }
         input:focus, textarea:focus { border-color: #999; background: #f6f6f6; }
-        input.biginput { font-size: 1.8em; width: 940px; }      
-                       
+        input.biginput { font-size: 1.8em; width: 940px; }
+        select { font-size: 1em; width: 615px; }
+
         p.submit { text-align: center; }
         input[type='submit'] { background: #f6f6f6; border: 1px solid #ccc; color: #444; display: inline-block; width: 180px; }
         input[type='submit']:hover { background: #e6e6e6; border-color: #aaa; color: #222; }
         textarea { font-size: 0.9em; margin-bottom: 1.1em; max-width: 600px; height: 200px; }
-        .field_description { font-style: italic; color: #777; display: inline-block; padding: 2px 0 0 20px; font-size: 0.9em; width: 300px; vertical-align: top; }  
-        .field_with_errors { display: inline; 
-            input, textarea { background: #FFEFE9; border-color: #993434; }   
-        }             
-        
+        .field_description { font-style: italic; color: #777; display: inline-block; padding: 2px 0 0 20px; font-size: 0.9em; width: 300px; vertical-align: top; }
+        .field_with_errors { display: inline;
+            input, textarea { background: #FFEFE9; border-color: #993434; }
+        }
+
         fieldset { padding-bottom: 0.8em; margin-bottom: 1em; border-bottom: 1px solid #ddd; }
-        fieldset.secret { background: #E5F3FF; margin: 1em 0 1.4em; padding: 0; border: 1px solid #8FC4E9; 
-			p { margin: 0.8em; 
+        fieldset.secret { background: #E5F3FF; margin: 1em 0 1.4em; padding: 0; border: 1px solid #8FC4E9;
+			p { margin: 0.8em;
 				.field_description { width: 250px; }
 			}
 		}
-        
+
     }
-    
+
     .errors { background: #FFEFE9; border: 1px solid #993434; padding: 0.7em 1.2em; margin: 0;
 		li { margin: 0.4em 0 0.4em 1.2em; font-size: 1.1em; }
-	}             
+	}
 }

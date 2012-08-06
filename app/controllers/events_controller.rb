@@ -9,6 +9,10 @@ class EventsController < ApplicationController
   end
 
   def show
+    if @event.use_centres
+      @centre = @event.centres.where(:slug => params[:centre]).first || @event.centres.first
+    end
+
     respond_to do |format|
       format.html { # show.html.erb
         }

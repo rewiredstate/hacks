@@ -9,8 +9,11 @@
 		a:hover, a:active { background-color: #eee;	}
 	}
 
-	.projects, .winners {
+	.all_projects, .winners {
 		h2 { font-size: 1.7em; color: #444; font-weight: bold; font-family: Helvetica, Arial, sans-serif; }
+	}
+
+	.projects, .winners {
 
 		ul { margin: 0; }
 		li { list-style: none; background: #eee; min-height: 83px; border: 1px solid #ddd; margin-bottom: 1em; display: block; padding: 0.9em;
@@ -50,8 +53,12 @@
 				list-style: none;
 				margin: 0;
 
-				a { padding: 0.75em; text-decoration: none; color: #333; border-bottom: 1px solid #ddd; border-right: 1px solid #bbb; font-size: 1.1em; display: block; }
+				a { background: #fafafa; padding: 0.75em; text-decoration: none; color: #888; border-bottom: 1px solid #ddd; border-right: 1px solid #bbb; font-size: 1.1em; display: block; }
 				a:hover, a:active { background: #f6f6f6; }
+				&.selected {
+					a { border-right: none; color: #000; font-weight: bold; font-size: 1.1em; background: #ffffff; }
+					a:hover, a:active { background: #fff; }
+				}
 			}
 		}
 		.projects { width: 725px; margin-top: 1em; float: right;

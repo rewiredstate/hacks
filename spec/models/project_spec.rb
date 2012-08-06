@@ -119,6 +119,29 @@ describe Project do
         end
       end
     end
+
+    describe "where the event has centres" do
+      before do
+        @event = FactoryGirl.create(:event, :secret => "secret", :use_centres => true)
+        @centre = @event.centres.create!(:name => "London", :slug => "london")
+        @valid_attributes.merge!({ :my_secret => @event.secret, :centre => @centre })
+      end
+
+      describe "given valid attributes" do
+        it "can be created" do
+          @project = @event.projects.create!(@valid_attributes)
+          @project.should be_persisted
+        end
+      end
+
+      describe "given invalid attributes" do
+        it "can't be created without a centre" do
+          @invalid_attributes = @valid_attributes.merge({ :centre => nil })
+          @project = @event.projects.build(@invalid_attributes)
+          @project.should_not be_valid
+        end
+      end
+    end
   end
 
   describe "updating a project" do

@@ -1,0 +1,7 @@
+<div id="projects" class="projects">
+    <ul>
+        <% @event.projects.each do |project| -%>
+            <%= render :partial => 'single_project', :locals => {:project => project, :winners => false} %>
+        <% end -%>
+    </ul>
+</div>

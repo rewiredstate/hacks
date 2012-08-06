@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :event
+  belongs_to :centre
   include Manageable
 
   has_paper_trail
@@ -10,8 +11,8 @@ class Project < ActiveRecord::Base
   has_many :awards
   has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
 
-  attr_accessible :title, :team, :url, :secret, :my_secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url
-  attr_accessible :title, :team, :url, :secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url, :awards_attributes, :slug, :as => :admin
+  attr_accessible :title, :team, :url, :secret, :my_secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url, :centre, :centre_id
+  attr_accessible :title, :team, :url, :secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url, :awards_attributes, :centre, :centre_id, :slug, :as => :admin
 
   accepts_nested_attributes_for :awards, :reject_if => :all_blank, :allow_destroy => true
 
@@ -35,13 +36,15 @@ class Project < ActiveRecord::Base
 
   attr_accessor :my_secret
 
-  before_validation :create_slug, :blank_url_fields
+  before_validation :create_slug, :if => proc { self.slug.blank? and ! self.title.blank? }
+  before_validation :blank_url_fields
 
   validates :title, :team, :description, :presence => true
   validates :summary, :presence => true, :length => { :maximum => 180 }
   validates :slug, :uniqueness => { :case_sensitive => false }
   validates :secret, :presence => true, :on => :create, :if => :secret_required?
   validates :url, :code_url, :github_url, :svn_url, :format => { :with => URI::regexp, :allow_blank => true }
+  validates :centre, :presence => true, :if => proc { |a| a.event.use_centres == true }
 
   validates_attachment_presence :image, :on => :create
   validates_attachment_size :image, :less_than=>1.megabyte, :if => Proc.new { |i| !i.image.file? }
@@ -98,7 +101,8 @@ class Project < ActiveRecord::Base
 
   private
     def create_slug
-      self.slug = (self.title || "").parameterize if self.slug.blank?
+      existing_slugs = Project.all.select {|a| a.slug.match(/^#{self.title.parameterize}(\-[0-9]+)?$/)  }.size
+      self.slug = (existing_slugs > 0 ? "#{self.title.parameterize}-#{existing_slugs+1}" : self.title.parameterize)
     end
 
     def blank_url_fields

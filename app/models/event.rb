@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   has_many :projects
   has_many :award_categories
+  has_many :centres
 
   has_many :awards, :through => :award_categories
   has_many :award_winners, :through => :awards, :source => :project
@@ -8,6 +9,7 @@ class Event < ActiveRecord::Base
   before_validation :create_slug, :if => proc { self.slug.blank? and ! self.title.blank? }
 
   accepts_nested_attributes_for :award_categories, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :centres, :reject_if => :all_blank
 
   validates :title, :slug, :presence => true
   validates :slug, :uniqueness => { :case_sensitive => false }

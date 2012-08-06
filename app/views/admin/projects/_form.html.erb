@@ -3,6 +3,9 @@
 
   <%= f.inputs "Basic Info" do %>
     <%= f.input :title %>
+    <% if parent.use_centres %>
+      <%= f.input :centre %>
+    <% end %>
     <%= f.input :slug, :input_html => { :disabled => true } %>
     <%= f.input :team %>
     <%= f.input :url %>
