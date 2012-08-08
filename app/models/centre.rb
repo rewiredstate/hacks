@@ -2,6 +2,8 @@ class Centre < ActiveRecord::Base
   belongs_to :event
   has_many :projects
 
+  default_scope order('name ASC')
+
   validates :name, :slug, :presence => true
   validates :slug, :uniqueness => { :case_sensitive => false, :scope => :event_id }
 
