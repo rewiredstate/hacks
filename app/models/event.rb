@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   end
 
   def has_secret?
-    !self.secret.nil?
+    !self.secret.blank?
   end
 
   private

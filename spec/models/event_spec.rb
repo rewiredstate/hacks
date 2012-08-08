@@ -34,6 +34,11 @@ describe Event do
         @event_two.slug.should == "event-title-2"
       end
 
+      it "does not have a password if the secret is blank" do
+        @event = Event.create!(@valid_attributes.merge({:secret => ''}))
+        @event.should_not have_secret
+      end
+
       it "does not use centres by default" do
         @event = Event.create!( @valid_attributes )
         @event.use_centres.should be_false
