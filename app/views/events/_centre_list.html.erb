@@ -1,0 +1,10 @@
+<ul class="centre_list">
+    <% @event.centres.each do |c| %>
+    <li>
+      <a href="<%= centre_event_path(@event, c.slug) %>" title="<%= c.name %>">
+        <h3><%= c.name %></h3>
+        <span><%= pluralize c.projects.count, "hack" %></span>
+      </a>
+    </li>
+    <% end %>
+</ul>

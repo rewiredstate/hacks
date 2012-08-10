@@ -1,10 +1,15 @@
-<div id="projects" class="centres">
+<%= render :partial => 'event_header' %>
+
+<div class="centres">
+    <%= link_to "&larr; See all centres and winners".html_safe, event_path(@event), :class => "back" %>
     <ul class="centre_selection">
         <% @event.centres.each do |c| %>
-          <li class="<%= 'selected' if c == @centre %>"><%= link_to c.name, centre_event_path(@event, c.slug, :anchor => "projects") %></li>
+          <li class="<%= 'selected' if c == @centre %>"><%= link_to c.name, centre_event_path(@event, c.slug) %></li>
         <% end %>
     </ul>
     <div class="projects">
+        <h2><%= @centre.name %></h2>
+
         <% if @centre.projects.any? %>
         <ul>
             <% @centre.projects.each do |project| -%>

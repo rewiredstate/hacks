@@ -52,6 +52,7 @@ class ProjectsController < ApplicationController
 
     def find_project
       @project = @event.projects.find_by_slug(params[:id]) || not_found
+      breadcrumbs.add @project.centre.name, centre_event_path(@event, @project.centre.slug) if @event.use_centres
       breadcrumbs.add @project.title, event_project_path(@event, @project)
     end
 end

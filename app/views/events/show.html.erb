@@ -1,8 +1,4 @@
-<% content_for(:title) { "#{@event.title}" } %>
-
-<div class="left"><h1><%= @event.title %></h1></div>
-<div class="right"><%= link_to "New project", new_event_project_path(@event), :class => 'action' %></div>
-<div class="clear"></div>
+<%= render :partial => 'event_header' %>
 
 <div class="migrate_rs">
   <%= link_to "See the full event details", ( @event.url.blank? ? "http://rewiredstate.org/events/#{@event.slug}" : @event.url ) %>
@@ -16,7 +12,7 @@
   <h2><%= pluralize @event.projects.size, "projects" %><% if @event.use_centres %> from <%= pluralize @event.centres.size, "centres" %><% end %></h2>
 
   <% if @event.use_centres %>
-    <%= render :partial => 'display_centres' %>
+    <%= render :partial => 'centre_list' %>
   <% else %>
     <%= render :partial => 'display_standard' %>
   <% end %>

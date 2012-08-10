@@ -17,7 +17,9 @@ Projects::Application.routes.draw do
 
   # devise_for :admins, :path => 'admin'
 
-  get 'events/:id/centres/:centre' => "events#show", :as => :centre_event
+  get 'events/:id/centres' => "events#show_centre"
+  get 'events/:id/centres/:centre' => "events#show_centre", :as => :centre_event
+
   resources :events, :only => [:index,:show] do
     resources :projects, :except => [:index,:destroy], :path => ''
   end

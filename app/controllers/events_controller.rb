@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   def show
     if @event.use_centres
-      @centre = @event.centres.where(:slug => params[:centre]).first || @event.centres.first
+
     end
 
     respond_to do |format|
@@ -19,6 +19,24 @@ class EventsController < ApplicationController
       format.json { # show.json.rabl
         }
       format.csv { render :csv => @event.projects }
+    end
+  end
+
+  def show_centre
+    unless @event.use_centres and !params[:centre].blank?
+      redirect_to event_path(@event)
+      return
+    end
+
+    @centre = @event.centres.where(:slug => params[:centre]).first || not_found
+
+    breadcrumbs.add @centre.name, centre_event_path(@event, @centre.slug)
+
+    respond_to do |format|
+      format.html {
+        }
+      format.json {
+        }
     end
   end
 

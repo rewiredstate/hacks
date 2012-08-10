@@ -1,12 +1,12 @@
 #content {
 	.migrate_rs {
 		a, a:link, a:visited {
-			background: #f6f6f6 url(<%= asset_path 'go.png' %>) no-repeat 15px center;
+			background: #f4f4f4 url(<%= asset_path 'go.png' %>) no-repeat 15px center;
 			display: inline-block;
 			font-size: 1.2em;
 			padding: 1em 1.1em 1em 50px;
 		}
-		a:hover, a:active { background-color: #eee;	}
+		a:hover, a:active { background-color: #eaeaea;	}
 	}
 
 	.all_projects, .winners {
@@ -40,9 +40,23 @@
 
 	}
 
+	ul.centre_list {
+		margin: 0;
+		li { display: inline-block; vertical-align: top; list-style: none; width: 316px; margin-bottom: 0.4em;
+			a { background: #f4f4f4; min-height: 4.6em; color: #fff; font-size: 1.2em; display: block; padding: 0.8em; text-decoration: none;
+				h3 { font-size: 1.3em; margin-bottom: 0.2em; line-height: 1.2em; color: #555; }
+				span { font-size: 1em; color: #777;}
+				&:hover { background: #eaeaea; h3 { color: #444; } }
+			}
+		}
+	}
+
 	.centres {
-		border-top: 1px solid #ddd;
-		// padding-top: 1em;
+		margin-top: 1em;
+
+		> a { background: #B63322; color: #fff; display: block; margin-bottom: 1em; padding: 0.7em 0.7em 0.65em; font-size: 1.2em; text-decoration: none;
+			&:hover { background: #9f2c1e };
+		}
 
 		ul.centre_selection {
 			width: 220px;
@@ -52,9 +66,10 @@
 			li {
 				list-style: none;
 				margin: 0;
+				&:first-child a { border-top: 1px solid #ddd; }
 
 				a { background: #fafafa; padding: 0.75em; text-decoration: none; color: #888; border-bottom: 1px solid #ddd; border-right: 1px solid #bbb; font-size: 1.1em; display: block; }
-				a:hover, a:active { background: #f6f6f6; }
+				a:hover, a:active { background: #eee; }
 				&.selected {
 					a { border-right: none; color: #000; font-weight: bold; font-size: 1.1em; background: #ffffff; }
 					a:hover, a:active { background: #fff; }
@@ -62,6 +77,7 @@
 			}
 		}
 		.projects { width: 725px; margin-top: 1em; float: right;
+			h2 { margin: 0 0 0.75em; }
 			li .right { width: 540px; }
 		}
 	}
