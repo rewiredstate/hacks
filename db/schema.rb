@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811094639) do
+ActiveRecord::Schema.define(:version => 20120811120439) do
 
   create_table "admins", :force => true do |t|
     t.string    "email",                  :default => "", :null => false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120811094639) do
     t.timestamp "updated_at"
     t.string    "format"
     t.string    "level"
+    t.boolean   "featured",    :default => true
   end
 
   create_table "awards", :force => true do |t|

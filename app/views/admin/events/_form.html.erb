@@ -27,8 +27,9 @@
     <%= f.semantic_fields_for :award_categories do |award_fields| %>
       <%= award_fields.input :title %>
       <%= award_fields.input :description, :as => :string %>
-      <%= award_fields.input :format, :as => :select, :name => "Type", :collection => {"Award" => "overall", "Special Mention" => "mention"} %>
+      <%= award_fields.input :format, :as => :select, :name => "Type", :collection => {"Award" => "overall", "Special Mention" => "mention", "Finalist" => "finalist"} %>
       <%= award_fields.input :level, :as => :select, :collection => {"Gold" => '1', "Silver" => '2'} %>
+      <%= award_fields.input :featured, :label => "Show in winners list?" %>
       <%= award_fields.link_to_remove "Remove this category" %>
     <% end %>
     <%= f.link_to_add "Add an award category", :award_categories %>

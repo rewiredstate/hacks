@@ -65,7 +65,8 @@ describe Event do
         :title => 'Best in Show',
         :description => 'The best hack',
         :level => '1',
-        :format => 'overall'
+        :format => 'overall',
+        :featured => true
       }
     end
 
@@ -81,6 +82,28 @@ describe Event do
 
       @event.update_attributes!({ :award_categories_attributes => [{ :id => @award_category.id, :'_destroy' => '1' }] })
       @event.award_categories.count.should == 0
+    end
+
+    context "given projects which have won awards" do
+
+      it "should only return featured award categories as winners" do
+        @featured_award_category = @event.award_categories.create!(@award_category_atts)
+        @other_award_category = @event.award_categories.create!(@award_category_atts.merge({:featured => false}))
+
+        @project_one = FactoryGirl.create(:project_with_event_secret)
+        @project_two = FactoryGirl.create(:project_with_event_secret)
+        @project_one.update_attribute(:event_id, @event.id)
+        @project_two.update_attribute(:event_id, @event.id)
+
+        @featured_award_category.award_to(@project_one)
+        @other_award_category.award_to(@project_two)
+
+        @event.winners.count.should == 1
+        @event.winners.should =~ [ @project_one ]
+
+        @event.award_winners.count.should == 2
+        @event.award_winners.should =~ [ @project_one, @project_two ]
+      end
     end
   end
 

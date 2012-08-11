@@ -41,6 +41,7 @@ FactoryGirl.define do
     description "The most outstanding hack created."
     format "overall"
     level 1
+    featured true
     event
   end
 

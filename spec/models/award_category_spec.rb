@@ -17,6 +17,11 @@ describe AwardCategory do
       it "can create an award category" do
         @event.award_categories.create!(@valid_attributes)
       end
+
+      it "features the award category by default" do
+        @award_category = @event.award_categories.create!(@valid_attributes)
+        @award_category.featured.should == true
+      end
     end
 
     context "given invalid attributes" do

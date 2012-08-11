@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
   end
 
   def winners
-    self.award_categories.all.map {|i| i.award_winners.all }.flatten.uniq
+    self.award_categories.featured.all.map {|i| i.award_winners.all }.flatten.uniq
   end
 
   def has_secret?
