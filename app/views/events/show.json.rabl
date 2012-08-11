@@ -17,3 +17,9 @@ child :projects do
     attribute :title, :description
   end
 end
+
+child :centres do
+  attributes :name
+  code(:url) {|c| centre_event_url(@event, c.slug) }
+  code(:count) {|c| c.projects.count }
+end
