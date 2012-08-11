@@ -11,95 +11,96 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806161918) do
+ActiveRecord::Schema.define(:version => 20120811094639) do
 
   create_table "admins", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "email",                  :default => "", :null => false
+    t.string    "encrypted_password",     :default => "", :null => false
+    t.string    "reset_password_token"
+    t.timestamp "reset_password_sent_at"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",          :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
 
   create_table "award_categories", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "format"
-    t.string   "level"
+    t.string    "title"
+    t.text      "description"
+    t.integer   "event_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "format"
+    t.string    "level"
   end
 
   create_table "awards", :force => true do |t|
-    t.integer  "award_category_id"
-    t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "award_category_id"
+    t.integer   "project_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "centres", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.string    "slug"
+    t.integer   "event_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "events", :force => true do |t|
-    t.string   "title"
-    t.string   "slug"
-    t.string   "hashtag"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "secret"
-    t.boolean  "active",      :default => true
-    t.boolean  "use_centres", :default => false
-    t.string   "url"
+    t.string    "title"
+    t.string    "slug"
+    t.string    "hashtag"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "secret"
+    t.boolean   "active",                  :default => true
+    t.boolean   "use_centres",             :default => false
+    t.string    "url"
+    t.boolean   "enable_project_creation", :default => true
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "title"
-    t.string   "slug"
-    t.integer  "event_id"
-    t.text     "description"
-    t.string   "team"
-    t.string   "url"
-    t.text     "ideas"
-    t.text     "costs"
-    t.text     "data"
-    t.string   "twitter"
-    t.string   "github_url"
-    t.string   "svn_url"
-    t.string   "code_url"
-    t.string   "secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "summary"
-    t.integer  "centre_id"
+    t.string    "title"
+    t.string    "slug"
+    t.integer   "event_id"
+    t.text      "description"
+    t.string    "team"
+    t.string    "url"
+    t.text      "ideas"
+    t.text      "costs"
+    t.text      "data"
+    t.string    "twitter"
+    t.string    "github_url"
+    t.string    "svn_url"
+    t.string    "code_url"
+    t.string    "secret"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "image_file_name"
+    t.string    "image_content_type"
+    t.integer   "image_file_size"
+    t.timestamp "image_updated_at"
+    t.string    "summary"
+    t.integer   "centre_id"
   end
 
   create_table "versions", :force => true do |t|
-    t.string   "item_type",  :null => false
-    t.integer  "item_id",    :null => false
-    t.string   "event",      :null => false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
+    t.string    "item_type",  :null => false
+    t.integer   "item_id",    :null => false
+    t.string    "event",      :null => false
+    t.string    "whodunnit"
+    t.text      "object"
+    t.timestamp "created_at"
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"

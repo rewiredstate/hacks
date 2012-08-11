@@ -9,10 +9,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    if @event.use_centres
-
-    end
-
     respond_to do |format|
       format.html { # show.html.erb
         }

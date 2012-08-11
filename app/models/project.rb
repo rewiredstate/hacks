@@ -45,6 +45,7 @@ class Project < ActiveRecord::Base
   validates :secret, :presence => true, :on => :create, :if => :secret_required?
   validates :url, :code_url, :github_url, :svn_url, :format => { :with => URI::regexp, :allow_blank => true }
   validates :centre, :presence => true, :if => proc { |a| a.event.use_centres == true }
+  validate :ensure_project_creation_is_enabled
 
   validates_attachment_presence :image, :on => :create
   validates_attachment_size :image, :less_than=>1.megabyte, :if => Proc.new { |i| !i.image.file? }
@@ -117,5 +118,11 @@ class Project < ActiveRecord::Base
       self.github_url ||= 'http://'
       self.svn_url ||= 'http://'
       self.code_url ||= 'http://'
+    end
+
+    def ensure_project_creation_is_enabled
+      unless event.enable_project_creation
+        errors.add(:event, "no longer allows projects to be created")
+      end
     end
 end

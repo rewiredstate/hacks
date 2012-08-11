@@ -1,6 +1,6 @@
 <% content_for(:title) { "#{@event.title}" } %>
 
 <div class="left"><h1><%= @event.title %></h1></div>
-<div class="right"><%= link_to "New project", new_event_project_path(@event), :class => 'action' %></div>
+<%- if @event.enable_project_creation -%><div class="right"><%= link_to "New project", new_event_project_path(@event), :class => 'action' %></div><%- end -%>
 <div class="clear"></div>
 

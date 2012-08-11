@@ -5,6 +5,11 @@ class ProjectsController < ApplicationController
   def new
     @project = @event.projects.build
 
+    unless @event.enable_project_creation
+      flash[:alert] = 'Projects can no longer be created here for this event. Please get in touch if you\'d like to add a project here.'
+      redirect_to event_path(@event)
+    end
+
     breadcrumbs.add "New project", new_event_project_path(@event, @project)
   end
 

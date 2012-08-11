@@ -48,6 +48,12 @@ describe Project do
           @project.should_not be_valid
         end
 
+        it "can't be created if the event no longer allows new projects to be created" do
+          @event = FactoryGirl.create(:event, :enable_project_creation => false)
+          @project = @event.projects.build(@valid_attributes)
+          @project.should_not be_valid
+        end
+
         it "can't be created without a screenshot" do
           @valid_attributes.merge!({ :image => nil })
           @project = @event.projects.build(@valid_attributes)
