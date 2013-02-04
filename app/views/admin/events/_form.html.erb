@@ -3,6 +3,7 @@
 
   <%= f.inputs do %>
     <%= f.input :title %>
+    <%= f.input :start_date, :as => :string %>
     <%= f.input :slug, ( resource.persisted? ? { :input_html => { :disabled => true } } : { } ) %>
     <%= f.input :secret, :label => "Event secret", :input_html => { :placeholder => "If blank, projects must create their own passwords"} %>
     <%= f.input :url, :label => "Event homepage", :input_html => { :placeholder => "http://" } %>
