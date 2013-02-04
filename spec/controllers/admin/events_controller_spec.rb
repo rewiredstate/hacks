@@ -35,6 +35,7 @@ describe Admin::EventsController do
           @valid_attributes = {
             :title => "Example Event",
             :secret => nil,
+            :start_date => "1 January 2013",
             :award_categories_attributes => [
               { :title => "Best in Show", :format => "overall", :level => "1" }
             ]
@@ -45,6 +46,7 @@ describe Admin::EventsController do
           post :create, :event => @valid_attributes
           assigns(:event).should be_persisted
           assigns(:event).title.should == "Example Event"
+          assigns(:event).start_date.should == Date.parse("1 January 2013")
         end
 
         it "should redirect to the event list" do
