@@ -3,9 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.1.10'
 gem 'unicorn'
 
-group :development do
-  gem 'sqlite3'
-end
+gem 'pg'
 
 gem 'json'
 gem 'jquery-rails'
@@ -43,8 +41,4 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
   gem 'capybara'
-end
-
-group :production do
-  gem 'pg'
 end
