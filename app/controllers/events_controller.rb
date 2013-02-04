@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @events = Event.all
+    @events = Event.recent_first.all
     respond_with @events
   end
 
