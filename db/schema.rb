@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811120439) do
+ActiveRecord::Schema.define(:version => 20130204184500) do
 
   create_table "admins", :force => true do |t|
     t.string    "email",                  :default => "", :null => false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120811120439) do
     t.boolean   "use_centres",             :default => false
     t.string    "url"
     t.boolean   "enable_project_creation", :default => true
+    t.date      "start_date"
   end
 
   create_table "projects", :force => true do |t|

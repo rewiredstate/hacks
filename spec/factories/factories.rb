@@ -9,6 +9,7 @@ FactoryGirl.define do
     sequence(:title) {|n| "Hack all the things ##{n}"}
     sequence(:slug) {|n| "hack-everything-#{n}"}
     secret "secret"
+    start_date { Date.today }
 
     factory :event_without_secret do
       secret nil
