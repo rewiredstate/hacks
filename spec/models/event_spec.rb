@@ -7,7 +7,8 @@ describe Event do
       @valid_attributes = {
         :title => "Event Title",
         :slug => "event-slug",
-        :secret => "secret"
+        :secret => "secret",
+        :start_date => Date.parse("1 January 2013")
       }
     end
 
