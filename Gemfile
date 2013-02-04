@@ -22,7 +22,7 @@ gem 'paper_trail', '~> 2'
 
 # admin
 
-gem "devise", "~> 2"
+gem "devise", "~> 2.0.5"
 gem "inherited_resources"
 
 gem "formtastic", "~> 2.2"
