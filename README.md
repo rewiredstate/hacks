@@ -1,4 +1,4 @@
-# Rewired State Hacks
+# Rewired State Hacks [![Build Status](https://travis-ci.org/rewiredstate/hacks.png?branch=master)](https://travis-ci.org/rewiredstate/hacks)
 
 A database for all hacks created at Rewired State events.
 
