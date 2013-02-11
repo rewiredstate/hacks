@@ -5,7 +5,7 @@ gem 'unicorn'
 
 gem 'pg'
 
-gem 'json'
+gem 'json', '1.7.7'
 gem 'jquery-rails'
 
 gem 'aws-s3'
