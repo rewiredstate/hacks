@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.10'
+gem 'rails', '~> 3.2.12'
 gem 'unicorn'
 
 gem 'pg'
@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'aws-s3'
 gem 'rabl'
 gem "breadcrumbs", "~> 0.1.6"
-gem "comma", "~> 0.4.3"
+gem "comma", "~> 3.0.4"
 
 gem "rdiscount", "~> 1.6.8"
 gem "paperclip", "~> 2.4"
@@ -27,8 +27,7 @@ gem "formtastic", "~> 2.2"
 gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.5'
   gem 'uglifier', '>= 1.0.3'
 end
 
