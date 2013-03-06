@@ -18,7 +18,9 @@
     <div class="wrap">
       <h1 id="logo"><a href="http://rewiredstate.org/" title="Rewired State Homepage">Rewired State</a></h1>
       <ul id="navigation">
-          <li><a href="http://rewiredstate.org/">&larr; Back to rewiredstate.org</a></li>
+          <% unless home_url.blank? %>
+            <li><a href="<%= home_url %>">&larr; Back to <%= URI.parse(home_url).host %></a></li>
+          <% end %>
       </ul>
       <div class="clear"></div>
     </div>
