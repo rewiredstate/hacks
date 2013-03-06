@@ -8,7 +8,7 @@ gem 'pg'
 gem 'json', '1.7.7'
 gem 'jquery-rails'
 
-gem 'aws-s3'
+gem "aws-sdk", "~> 1.8.3.1"
 gem 'rabl'
 gem "breadcrumbs", "~> 0.1.6"
 gem "comma", "~> 3.0.4"
