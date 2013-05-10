@@ -80,10 +80,6 @@ class Project < ActiveRecord::Base
     url_parts ? url_parts[1].sub(/\/$/i,'') : url
   end
 
-  def formatted_github_url
-    self.github_url.match(/\/([A-Za-z0-9_-]+\/[A-Za-z0-9_-]+)/i)[1]
-  end
-
   def set_filename
     self.slug + Time.now.strftime('%s')
   end

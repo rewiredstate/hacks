@@ -25,7 +25,7 @@
             <ul>
                 <li class="icon_url">Project URL: <%= link_to @project.format_url(@project.url), @project.url rescue "<em>None</em>".html_safe %></li>
 
-                <% if @project.github_url.present? -%><li class="icon_github">GitHub: <%= link_to @project.formatted_github_url, @project.github_url %></li>
+                <% if @project.github_url.present? -%><li class="icon_github">GitHub: <%= link_to format_github_url(@project.github_url), @project.github_url %></li>
                 <% elsif @project.svn_url.present? -%><li class="icon_code">SVN URL: <%= link_to @project.format_url(@project.svn_url), @project.svn_url %></li>
                 <% elsif @project.code_url.present? -%><li class="icon_code">Code URL: <%= link_to @project.format_url(@project.code_url), @project.code_url %></li><% end -%>
 
