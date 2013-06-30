@@ -65,7 +65,8 @@ Projects::Application.configure do
       :access_key_id => ENV['S3_KEY'],
       :secret_access_key => ENV['S3_SECRET']
     },
-    url: ":s3_domain_url"
+    url: ":s3_domain_url",
+    path: "/:class/:attachment/:id_partition/:style/:filename"
   }
 
 end
