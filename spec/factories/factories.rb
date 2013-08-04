@@ -46,4 +46,10 @@ FactoryGirl.define do
     event
   end
 
+  factory :centre do
+    name "London"
+    slug "london"
+    event
+  end
+
 end
