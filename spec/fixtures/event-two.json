@@ -1,0 +1,153 @@
+{
+  "active": true,
+  "created_at": "2013-08-05T06:14:54Z",
+  "enable_project_creation": false,
+  "hashtag": "foo",
+  "id": 39,
+  "secret": "secret",
+  "slug": "event-two",
+  "start_date": "2013-08-01",
+  "title": "Event Two",
+  "updated_at": "2013-08-05T06:14:54Z",
+  "url": "http://www.test.com/",
+  "use_centres": false,
+  "award_categories": [
+    {
+      "created_at": "2013-08-05T06:14:54Z",
+      "description": "Best hack created during the event",
+      "event_id": 39,
+      "featured": true,
+      "format": "overall",
+      "id": 70,
+      "level": "1",
+      "title": "Best in Show",
+      "updated_at": "2013-08-05T06:24:30Z"
+    },
+    {
+      "created_at": "2013-08-05T06:14:54Z",
+      "description": "Noted by the judges for their effort or technical achievent",
+      "event_id": 39,
+      "featured": true,
+      "format": "mention",
+      "id": 72,
+      "level": "2",
+      "title": "Special Mention",
+      "updated_at": "2013-08-05T06:14:54Z"
+    },
+    {
+      "created_at": "2013-08-05T06:14:54Z",
+      "description": "Centre winner",
+      "event_id": 39,
+      "featured": false,
+      "format": "finalist",
+      "id": 71,
+      "level": "2",
+      "title": "Finalist",
+      "updated_at": "2013-08-05T06:14:54Z"
+    }
+  ],
+  "projects": [
+    {
+      "centre_id": null,
+      "code_url": "",
+      "costs": null,
+      "created_at": "2013-08-05T06:19:44Z",
+      "data": "",
+      "description": "Foo",
+      "event_id": 39,
+      "github_url": "http://github.com/rewiredstate/hacks",
+      "id": 412,
+      "ideas": "",
+      "image_content_type": "image/gif",
+      "image_file_name": "cats.gif",
+      "image_file_size": 2760,
+      "image_updated_at": "2013-08-05T06:19:44Z",
+      "secret": null,
+      "slug": "hack-o-matic",
+      "summary": "Foo",
+      "svn_url": "",
+      "team": "Somebody",
+      "title": "Hack-o-matic",
+      "twitter": "@test",
+      "updated_at": "2013-08-05T06:23:58Z",
+      "url": "",
+      "awards": [
+        {
+          "award_category_id": 72,
+          "created_at": "2013-08-05T06:23:58Z",
+          "id": 103,
+          "project_id": 412,
+          "updated_at": "2013-08-05T06:23:58Z"
+        }
+      ]
+    },
+    {
+      "centre_id": null,
+      "code_url": "",
+      "costs": null,
+      "created_at": "2013-08-05T06:23:28Z",
+      "data": "",
+      "description": "Bar",
+      "event_id": 39,
+      "github_url": "",
+      "id": 414,
+      "ideas": "",
+      "image_content_type": "image/gif",
+      "image_file_name": "popcorn.gif",
+      "image_file_size": 2881,
+      "image_updated_at": "2013-08-05T06:23:28Z",
+      "secret": null,
+      "slug": "hackr",
+      "summary": "Bar",
+      "svn_url": "",
+      "team": "Somebody Else",
+      "title": "Hackr",
+      "twitter": "@test",
+      "updated_at": "2013-08-05T06:23:49Z",
+      "url": "",
+      "awards": [
+        {
+          "award_category_id": 70,
+          "created_at": "2013-08-05T06:23:49Z",
+          "id": 102,
+          "project_id": 414,
+          "updated_at": "2013-08-05T06:23:49Z"
+        }
+      ]
+    },
+    {
+      "centre_id": null,
+      "code_url": "",
+      "costs": null,
+      "created_at": "2013-08-05T06:22:07Z",
+      "data": "",
+      "description": "Baz",
+      "event_id": 39,
+      "github_url": "",
+      "id": 413,
+      "ideas": "",
+      "image_content_type": "image/gif",
+      "image_file_name": "geeks.gif",
+      "image_file_size": 2547,
+      "image_updated_at": "2013-08-05T06:22:06Z",
+      "secret": null,
+      "slug": "insta-hack",
+      "summary": "Baz",
+      "svn_url": "",
+      "team": "Somebody Else (again)",
+      "title": "Insta-hack",
+      "twitter": "@test",
+      "updated_at": "2013-08-05T06:24:04Z",
+      "url": "",
+      "awards": [
+        {
+          "award_category_id": 71,
+          "created_at": "2013-08-05T06:24:04Z",
+          "id": 104,
+          "project_id": 413,
+          "updated_at": "2013-08-05T06:24:04Z"
+        }
+      ]
+    }
+  ]
+}

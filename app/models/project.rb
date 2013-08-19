@@ -56,6 +56,7 @@ class Project < ActiveRecord::Base
     o.validates_each :my_secret, :on => :update do |model, attr, value|
       model.errors.add(attr, 'is incorrect') if (value != model.project_or_event_secret)
     end
+    o.validates_attachment_presence :image, :on => :create
   end
 
   def to_param
