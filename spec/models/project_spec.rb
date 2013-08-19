@@ -101,6 +101,17 @@ describe Project do
           @project = @event.projects.build(@valid_attributes)
           @project.should_not be_valid
         end
+
+        it "can't be created with a duplicate slug for the same event" do
+          @project_one = @event.projects.build(@valid_attributes)
+          @project_one.slug = "project-slug"
+          @project_one.save!
+
+          @project_two = @event.projects.build(@valid_attributes)
+          @project_two.slug = "project-slug"
+          @project_two.should_not be_valid
+          @project_two.should have(1).error_on(:slug)
+        end
       end
     end
 

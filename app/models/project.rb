@@ -36,18 +36,17 @@ class Project < ActiveRecord::Base
 
   attr_accessor :my_secret
 
-  before_validation :create_slug, :if => proc { self.slug.blank? and ! self.title.blank? }
+  before_validation :create_slug, :if => proc { self.slug.blank? && self.title.present? }
   before_validation :blank_url_fields
 
   validates :title, :team, :description, :presence => true
   validates :summary, :presence => true, :length => { :maximum => 180 }
-  validates :slug, :uniqueness => { :case_sensitive => false }
+  validates :slug, :uniqueness => { :case_sensitive => false, :scope => :event_id }
   validates :secret, :presence => true, :on => :create, :if => :secret_required?
   validates :url, :code_url, :github_url, :svn_url, :format => { :with => URI::regexp, :allow_blank => true }
   validates :centre, :presence => true, :if => proc { |a| a.event.use_centres == true }
   validate :ensure_project_creation_is_enabled, :on => :create
 
-  validates_attachment_presence :image, :on => :create
   validates_attachment_size :image, :less_than=>1.megabyte, :if => Proc.new { |i| !i.image.file? }
 
   with_options :unless => :managing do |o|
@@ -96,29 +95,29 @@ class Project < ActiveRecord::Base
     "http://hacks.rewiredstate.org" + Rails.application.routes.url_helpers.event_project_path(self.event, self)
   end
 
-  private
-    def create_slug
-      existing_slugs = Project.all.select {|a| a.slug.match(/^#{self.title.parameterize}(\-[0-9]+)?$/)  }.size
-      self.slug = (existing_slugs > 0 ? "#{self.title.parameterize}-#{existing_slugs+1}" : self.title.parameterize)
-    end
+private
+  def create_slug
+    existing_slugs = Project.all.select {|a| a.slug.match(/^#{self.title.parameterize}(\-[0-9]+)?$/)  }.size
+    self.slug = (existing_slugs > 0 ? "#{self.title.parameterize}-#{existing_slugs+1}" : self.title.parameterize)
+  end
 
-    def blank_url_fields
-      self.url = '' if self.url == 'http://'
-      self.github_url = '' if self.github_url == 'http://'
-      self.code_url = '' if self.code_url == 'http://'
-      self.svn_url = '' if self.svn_url == 'http://'
-    end
+  def blank_url_fields
+    self.url = '' if self.url == 'http://'
+    self.github_url = '' if self.github_url == 'http://'
+    self.code_url = '' if self.code_url == 'http://'
+    self.svn_url = '' if self.svn_url == 'http://'
+  end
 
-    def set_default_values
-      self.url ||= 'http://'
-      self.github_url ||= 'http://'
-      self.svn_url ||= 'http://'
-      self.code_url ||= 'http://'
-    end
+  def set_default_values
+    self.url ||= 'http://'
+    self.github_url ||= 'http://'
+    self.svn_url ||= 'http://'
+    self.code_url ||= 'http://'
+  end
 
-    def ensure_project_creation_is_enabled
-      unless event.enable_project_creation
-        errors.add(:event, "no longer allows projects to be created")
-      end
+  def ensure_project_creation_is_enabled
+    unless event.enable_project_creation
+      errors.add(:event, "no longer allows projects to be created")
     end
+  end
 end
