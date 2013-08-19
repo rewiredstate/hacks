@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
-  has_many :projects
-  has_many :award_categories
-  has_many :centres
+  has_many :projects, :dependent => :destroy
+  has_many :award_categories, :dependent => :destroy
+  has_many :centres, :dependent => :destroy
 
   has_many :awards, :through => :award_categories
   has_many :award_winners, :through => :awards, :source => :project
