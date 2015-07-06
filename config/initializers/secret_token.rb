@@ -5,3 +5,4 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 Projects::Application.config.secret_token = ENV['SECRET_TOKEN'] || "an_insecure_secret_token_key_which_should_not_be_used_in_production"
+Projects::Application.config.secret_key_base = ENV['SECRET_KEY_BASE'] || "an_insecure_secret_token_key_which_should_not_be_used_in_production"
