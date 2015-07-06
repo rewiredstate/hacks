@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe AwardCategory do
+RSpec.describe AwardCategory do
 
   describe "creating an award category" do
     before do

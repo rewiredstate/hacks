@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ProjectsController do
+RSpec.describe ProjectsController do
 
   before do
     @event = FactoryGirl.create(:event_without_secret)

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::ProjectsController do
+RSpec.describe Admin::ProjectsController do
 
   before do
     @event = FactoryGirl.create(:event_without_secret)
@@ -16,7 +16,9 @@ describe Admin::ProjectsController do
   end
 
   context "when signed in" do
-    login_admin
+    before(:each) {
+      login_admin
+    }
 
     describe "GET index" do
       it "should be successful" do

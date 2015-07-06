@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ProjectsHelper do
+RSpec.describe ProjectsHelper do
 
   describe "#format_github_url" do
     it "returns the username and repository when given a valid http url" do

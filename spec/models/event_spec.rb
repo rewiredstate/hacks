@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Event do
+RSpec.describe Event do
 
   describe "creating an event" do
     before do

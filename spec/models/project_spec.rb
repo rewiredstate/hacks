@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Project do
+RSpec.describe Project do
 
   describe "creating an project" do
     before do

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Centre do
+RSpec.describe Centre do
 
   describe "creating a centre" do
     before do

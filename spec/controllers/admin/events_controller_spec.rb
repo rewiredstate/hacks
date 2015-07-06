@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::EventsController do
+RSpec.describe Admin::EventsController do
 
   context "when not signed in" do
     describe "GET 'index'" do
@@ -12,7 +12,9 @@ describe Admin::EventsController do
   end
 
   context "when signed in" do
-    login_admin
+    before(:each) {
+      login_admin
+    }
 
     describe "GET index" do
       it "should be successful" do
