@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope order('title ASC')
+  default_scope -> { order('title ASC') }
   after_initialize :set_default_values
 
   has_many :awards

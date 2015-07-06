@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
   validates :title, :slug, :presence => true
   validates :slug, :uniqueness => { :case_sensitive => false }
 
-  scope :recent_first, order("start_date desc")
+  scope :recent_first, -> { order("start_date desc") }
 
   def to_param
     self.slug
