@@ -69,4 +69,5 @@ Projects::Application.configure do
     path: "/:attachment/:id/:style/:filename"
   }
 
+  config.eager_load = true
 end

@@ -38,4 +38,6 @@ Projects::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.attachment_settings = { }
+
+  config.eager_load = false
 end
