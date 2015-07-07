@@ -13,7 +13,7 @@ gem "breadcrumbs", "~> 0.1.6"
 gem "comma", "~> 3.0.4"
 
 gem "rdiscount", "~> 1.6.8"
-gem "paperclip", "~> 2.4"
+gem "paperclip"
 
 gem 'paper_trail', '~> 3.0.3'
 
@@ -27,6 +27,8 @@ gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.0.3'
+
+gem 'puma'
 
 group :test do
   gem 'cucumber-rails', require: false
