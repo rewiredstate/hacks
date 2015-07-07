@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.0.12'
+gem 'rails', '~> 4.2.3'
 gem 'unicorn'
 
 gem 'pg'

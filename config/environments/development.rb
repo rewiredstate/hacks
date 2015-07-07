@@ -28,4 +28,5 @@ Projects::Application.configure do
   config.attachment_settings = { }
 
   config.eager_load = false
+  config.active_record.raise_in_transactional_callbacks = true
 end

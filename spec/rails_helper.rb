@@ -6,8 +6,6 @@ require 'capybara/rspec'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-# ActiveRecord::Migration.maintain_test_schema!
-
 require 'database_cleaner'
 
 RSpec.configure do |config|
@@ -24,6 +22,6 @@ RSpec.configure do |config|
   end
 
   config.infer_base_class_for_anonymous_controllers = false
-  
+
   config.infer_spec_type_from_file_location!
 end
