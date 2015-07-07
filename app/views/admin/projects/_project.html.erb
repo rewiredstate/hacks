@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to project.title, event_project_path(parent, project) %></td>
+  <td><%= link_to project.title, event_project_path(event, project) %></td>
   <td><%= truncate( project.slug, :length => 20 ) %></td>
   <td><%= truncate( project.team, :length => 30 ) %></td>
   <td>
@@ -9,6 +9,6 @@
       <% end %>
     </ul>
   </td>
-  <td><%= link_to "Edit", edit_admin_event_project_path(parent, project) %></td>
-  <td><%= link_to "Delete", admin_event_project_path(parent, project), :method => "DELETE", :confirm => "Are you sure you want to *permanently* delete this project, and all its hacks?" %></td>
+  <td><%= link_to "Edit", edit_admin_event_project_path(event, project) %></td>
+  <td><%= link_to "Delete", admin_event_project_path(event, project), :method => "DELETE", :confirm => "Are you sure you want to *permanently* delete this project, and all its hacks?" %></td>
 </tr>

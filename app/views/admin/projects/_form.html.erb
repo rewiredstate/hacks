@@ -1,15 +1,15 @@
-<%= semantic_nested_form_for([:admin, parent, resource]) do |f| %>
+<%= semantic_nested_form_for([:admin, event, project]) do |f| %>
   <%= f.semantic_errors %>
 
   <%= f.inputs "Basic Info" do %>
     <%= f.input :title %>
-    <% if parent.use_centres %>
+    <% if event.use_centres %>
       <%= f.input :centre %>
     <% end %>
     <%= f.input :slug, :input_html => { :disabled => true } %>
     <%= f.input :team %>
     <%= f.input :url %>
-    <% if ! parent.secret.present? %>
+    <% if ! event.secret.present? %>
       <%= f.input :secret %>
     <% end %>
   <% end %>
@@ -30,12 +30,12 @@
 
   <%= f.inputs "Image" do %>
     <%= f.input :image %>
-    <li class="input"><%= label_tag nil, "Current screenshot", :class => 'label' %><%= image_tag resource.image.url(:mini) %></li>
+    <li class="input"><%= label_tag nil, "Current screenshot", :class => 'label' %><%= image_tag project.image.url(:mini) %></li>
   <% end %>
 
   <%= f.inputs "Awards" do %>
     <%= f.semantic_fields_for :awards do |award_fields| %>
-      <%= award_fields.input :award_category, :collection => resource.event.award_categories %>
+      <%= award_fields.input :award_category, :collection => event.award_categories %>
       <%= award_fields.link_to_remove "Remove this award" %>
     <% end %>
     <%= f.link_to_add "Add an award", :awards %>
