@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::ProjectsController do
-  let(:event) { FactoryGirl.create(:event_without_secret) }
+  let(:event) { FactoryGirl.create(:event) }
 
   context "when not signed in" do
     describe "GET 'index'" do
@@ -26,8 +26,8 @@ RSpec.describe Admin::ProjectsController do
       end
 
       it "can assign a collection of all the projects" do
-        project_one = create(:project_with_secret, :event => event)
-        project_two = create(:project_with_secret, :event => event)
+        project_one = create(:project, :event => event)
+        project_two = create(:project, :event => event)
 
         get :index, :event_id => event.slug
         expect(controller.projects).to contain_exactly(project_one, project_two)
@@ -35,7 +35,7 @@ RSpec.describe Admin::ProjectsController do
     end
 
     describe "PUT update" do
-      let(:project) { create(:project_with_secret, :event => event) }
+      let(:project) { create(:project, :event => event) }
 
       context "given valid attributes" do
         let(:valid_attributes) {

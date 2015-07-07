@@ -29,7 +29,7 @@ describe EventsController do
 
   context "given an event exists" do
     before do
-      @event = FactoryGirl.create(:event_without_secret)
+      @event = FactoryGirl.create(:event)
     end
 
     describe "GET show" do
@@ -44,8 +44,8 @@ describe EventsController do
       end
 
       it "can assign a collection of all the projects" do
-        @project_one = FactoryGirl.create(:project_with_secret, :event => @event)
-        @project_two = FactoryGirl.create(:project_with_secret, :event => @event)
+        @project_one = FactoryGirl.create(:project, :event => @event)
+        @project_two = FactoryGirl.create(:project, :event => @event)
 
         get :show, :id => @event.slug
         assigns(:event).projects.should =~ [@project_one, @project_two]

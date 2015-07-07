@@ -8,12 +8,18 @@ FactoryGirl.define do
   factory :event do
     sequence(:title) {|n| "Hack all the things ##{n}"}
     sequence(:slug) {|n| "hack-everything-#{n}"}
-    secret "secret"
     start_date { Date.today }
 
-    factory :event_without_secret do
-      secret nil
+    factory :event_with_centres do
+      use_centres true
     end
+  end
+
+  factory :centre do
+    sequence(:name) {|n| "Centre #{n}"}
+    sequence(:slug) {|n| "centre-#{n}"}
+
+    event
   end
 
   factory :project do
@@ -26,15 +32,8 @@ FactoryGirl.define do
     github_url "https://github.com/github/github"
     image { stub_uploaded_image }
 
-    factory :project_with_secret do
-      association :event, :secret => nil
-      secret "secret"
-    end
-
-    factory :project_with_event_secret do
-      association :event, :secret => "secret"
-      my_secret "secret"
-    end
+    secret "secret"
+    event
   end
 
   factory :award_category do

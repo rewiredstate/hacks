@@ -43,7 +43,7 @@ class Admin::EventsController < Admin::BaseController
   private
     def event_params
       params.fetch(:event, {}).permit(:title, :slug, :hashtag, :use_centres,
-                :secret, :active, :url, :enable_project_creation, :start_date)
+                :active, :url, :enable_project_creation, :start_date)
     end
 
 end

@@ -5,7 +5,6 @@
     <%= f.input :title %>
     <%= f.input :start_date, :as => :string %>
     <%= f.input :slug, ( event.persisted? ? { :input_html => { :disabled => true } } : { } ) %>
-    <%= f.input :secret, :label => "Event secret", :input_html => { :placeholder => "If blank, projects must create their own passwords"} %>
     <%= f.input :url, :label => "Event homepage", :input_html => { :placeholder => "http://" } %>
     <%= f.input :use_centres, disable_if_persisted(event, { :input_html => { :disabled => true } }).merge({ :as => :select, :label => "Event type", :collection => { "Hacks shown together in list" => false, "Hacks grouped by centre" => true }, :include_blank => false }) %>
   <% end %>

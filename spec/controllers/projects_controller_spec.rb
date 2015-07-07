@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
 
-  let(:event) { FactoryGirl.create(:event_without_secret) }
+  let(:event) { FactoryGirl.create(:event) }
 
   describe "POST create" do
     context "given valid attributes" do
-      let(:attributes) { attributes_for(:project_with_secret) }
+      let(:attributes) { attributes_for(:project) }
 
       it "should create the project" do
         expect {
@@ -42,42 +42,51 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe "PUT update" do
-    let(:project) {
-      FactoryGirl.create(:project, :event => event, :secret => 'secret')
-    }
+    let(:project) { create(:project, event: event) }
 
     context "given valid attributes" do
-      let(:valid_attributes) {
+      let(:attributes) {
         {
-          title: "Modified Project Title",
-          team: "Ian and Mark",
-          my_secret: "secret",
+          title: "modified title",
+          submitted_secret: project.secret,
         }
       }
 
-      it "should create the project" do
-        put :update, :id => project.slug, :event_id => event.slug, :project => valid_attributes
+      it "should update the project" do
+        put :update, id: project.slug, event_id: event.slug, project: attributes
 
-        expect(assigns(:project).title).to eq("Modified Project Title")
-        expect(assigns(:project).team).to eq("Ian and Mark")
+        expect(assigns(:project).title).to eq(attributes[:title])
       end
 
       it "should redirect to the project" do
-        post :update, :id => project.slug, :event_id => event.slug, :project => valid_attributes
+        put :update, id: project.slug, event_id: event.slug, project: attributes
 
         expect(response).to redirect_to(event_project_path(event, project))
       end
     end
 
     context "given invalid attributes" do
-      let(:invalid_attributes) {
+      let(:attributes) {
+        { title: "" }
+      }
+
+      it "should show the edit form" do
+        put :update, id: project.slug, event_id: event.slug, project: attributes
+
+        expect(response).to render_template(:edit)
+      end
+    end
+
+    context 'given an incorrect secret' do
+      let(:attributes) {
         {
-          title: ""
+          title: 'updated title',
+          secret: 'not the correct secret',
         }
       }
 
-      it "should render the new form" do
-        put :update, :id => project.slug, :event_id => event.slug, :project => invalid_attributes
+      it 'should show the edit form' do
+        put :update, id: project.slug, event_id: event.slug, project: attributes
 
         expect(response).to render_template(:edit)
       end

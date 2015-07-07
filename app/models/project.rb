@@ -1,7 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :event
   belongs_to :centre
-  include Manageable
 
   has_paper_trail
 
@@ -31,7 +30,7 @@ class Project < ActiveRecord::Base
     notes
   end
 
-  attr_accessor :my_secret
+  attr_accessor :submitted_secret
 
   before_validation :create_slug, :if => proc { self.slug.blank? and ! self.title.blank? }
   before_validation :blank_url_fields
@@ -39,7 +38,7 @@ class Project < ActiveRecord::Base
   validates :title, :team, :description, :presence => true
   validates :summary, :presence => true, :length => { :maximum => 180 }
   validates :slug, :uniqueness => { :case_sensitive => false }
-  validates :secret, :presence => true, :on => :create, :if => :secret_required?
+  validates :secret, :presence => true, :on => :create
   validates :url, :code_url, :github_url, :svn_url, :format => { :with => URI::regexp, :allow_blank => true }
   validates :centre, :presence => true, :if => proc { |a| a.event.use_centres == true }
   validate :ensure_project_creation_is_enabled, :on => :create
@@ -52,26 +51,17 @@ class Project < ActiveRecord::Base
                                  less_than: 1.megabyte,
                                }
 
-  validates_each :my_secret, :on => :create, :if => :event_secret_required? do |model, attr, value|
-    model.errors.add(attr, "is incorrect") if (value != model.event.secret)
-  end
-
+  def update_attributes_with_secret(submitted_secret, attributes)
+    if valid_secret?(submitted_secret)
+      update_attributes(attributes)
+    else
+      self.errors.add(:secret, 'is not correct')
+      return false
+    end
   end
 
   def to_param
     self.slug
-  end
-
-  def event_secret_required?
-    self.event.has_secret?
-  end
-
-  def secret_required?
-    ! self.event_secret_required?
-  end
-
-  def project_or_event_secret
-    self.event_secret_required? ? self.event.secret : self.secret
   end
 
   def format_url(url)
@@ -119,5 +109,10 @@ class Project < ActiveRecord::Base
       unless event.enable_project_creation
         errors.add(:event, "no longer allows projects to be created")
       end
+    end
+
+    def valid_secret?(submitted_secret)
+      submitted_secret.present? &&
+        submitted_secret == secret
     end
 end

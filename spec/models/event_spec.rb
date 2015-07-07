@@ -97,8 +97,8 @@ RSpec.describe Event, type: :model do
     end
 
     context "given projects which have won awards" do
-      let(:project_one) { FactoryGirl.create(:project_with_event_secret, event: event) }
-      let(:project_two) { FactoryGirl.create(:project_with_event_secret, event: event) }
+      let(:project_one) { FactoryGirl.create(:project, event: event) }
+      let(:project_two) { FactoryGirl.create(:project, event: event) }
 
       let(:featured_award_category) { event.award_categories.create!(award_category_atts) }
       let(:other_award_category) { event.award_categories.create!(award_category_atts.merge(featured: false)) }
