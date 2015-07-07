@@ -11,7 +11,7 @@ class Centre < ActiveRecord::Base
 
   private
     def create_slug
-      existing_slugs = event.centres.all.select {|a| a.slug.match(/^#{self.name.parameterize}(\-[0-9]+)?$/)  }.size
+      existing_slugs = event.centres.select {|a| a.slug.match(/^#{self.name.parameterize}(\-[0-9]+)?$/)  }.size
       self.slug = (existing_slugs > 0 ? "#{self.name.parameterize}-#{existing_slugs+1}" : self.name.parameterize)
     end
 end

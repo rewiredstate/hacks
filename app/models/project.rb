@@ -11,9 +11,6 @@ class Project < ActiveRecord::Base
   has_many :awards
   has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
 
-  attr_accessible :title, :team, :url, :secret, :my_secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url, :centre, :centre_id
-  attr_accessible :title, :team, :url, :secret, :image, :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url, :code_url, :awards_attributes, :centre, :centre_id, :slug, :as => :admin
-
   accepts_nested_attributes_for :awards, :reject_if => :all_blank, :allow_destroy => true
 
   has_attached_file( :image, Rails.application.config.attachment_settings.merge({
@@ -47,16 +44,18 @@ class Project < ActiveRecord::Base
   validates :centre, :presence => true, :if => proc { |a| a.event.use_centres == true }
   validate :ensure_project_creation_is_enabled, :on => :create
 
-  validates_attachment_presence :image, :on => :create
-  validates_attachment_size :image, :less_than=>1.megabyte, :if => Proc.new { |i| !i.image.file? }
+  validates_attachment :image, presence: true,
+                               content_type: {
+                                 content_type: ["image/jpeg", "image/gif", "image/png"]
+                               },
+                               size: {
+                                 less_than: 1.megabyte,
+                               }
 
-  with_options :unless => :managing do |o|
-    o.validates_each :my_secret, :on => :create, :if => :event_secret_required? do |model, attr, value|
-      model.errors.add(attr, "is incorrect") if (value != model.event.secret)
-    end
-    o.validates_each :my_secret, :on => :update do |model, attr, value|
-      model.errors.add(attr, 'is incorrect') if (value != model.project_or_event_secret)
-    end
+  validates_each :my_secret, :on => :create, :if => :event_secret_required? do |model, attr, value|
+    model.errors.add(attr, "is incorrect") if (value != model.event.secret)
+  end
+
   end
 
   def to_param
@@ -89,7 +88,7 @@ class Project < ActiveRecord::Base
   end
 
   def notes
-  ""
+    ""
   end
 
   def project_url

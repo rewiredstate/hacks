@@ -1,7 +1,7 @@
 class AwardCategory < ActiveRecord::Base
   belongs_to :event
 
-  default_scope order('format DESC, level ASC, title ASC')
+  default_scope -> { order('format DESC, level ASC, title ASC') }
   scope :featured, -> { where(:featured => true) }
 
   has_many :awards, :dependent => :destroy
