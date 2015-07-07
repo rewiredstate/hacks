@@ -5,7 +5,6 @@ class Project < ActiveRecord::Base
   has_paper_trail
 
   default_scope -> { order('title ASC') }
-  after_initialize :set_default_values
 
   has_many :awards
   has_many :award_categories, :class_name => 'AwardCategory', :through => :awards
@@ -33,7 +32,6 @@ class Project < ActiveRecord::Base
   attr_accessor :submitted_secret
 
   before_validation :create_slug, :if => proc { self.slug.blank? and ! self.title.blank? }
-  before_validation :blank_url_fields
 
   validates :title, :team, :description, :presence => true
   validates :summary, :presence => true, :length => { :maximum => 180 }
@@ -89,20 +87,6 @@ class Project < ActiveRecord::Base
     def create_slug
       existing_slugs = Project.all.select {|a| a.slug.match(/^#{self.title.parameterize}(\-[0-9]+)?$/)  }.size
       self.slug = (existing_slugs > 0 ? "#{self.title.parameterize}-#{existing_slugs+1}" : self.title.parameterize)
-    end
-
-    def blank_url_fields
-      self.url = '' if self.url == 'http://'
-      self.github_url = '' if self.github_url == 'http://'
-      self.code_url = '' if self.code_url == 'http://'
-      self.svn_url = '' if self.svn_url == 'http://'
-    end
-
-    def set_default_values
-      self.url ||= 'http://'
-      self.github_url ||= 'http://'
-      self.svn_url ||= 'http://'
-      self.code_url ||= 'http://'
     end
 
     def ensure_project_creation_is_enabled
