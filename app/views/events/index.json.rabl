@@ -1,4 +1,4 @@
-collection @events
+collection events
 
 attributes :title, :hashtag
 
