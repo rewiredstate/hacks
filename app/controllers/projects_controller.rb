@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = @event.projects.build(params[:project])
+    @project = @event.projects.build(project_params)
 
     if @project.save
       flash[:notice] = 'Your project has been created.'
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update_attributes(params[:project])
+    if @project.update_attributes(project_params)
       flash[:notice] = 'Your project has been updated.'
       redirect_to event_project_url(@event,@project)
     else
@@ -59,5 +59,11 @@ class ProjectsController < ApplicationController
       @project = @event.projects.find_by_slug(params[:id]) || not_found
       breadcrumbs.add @project.centre.name, centre_event_path(@event, @project.centre.slug) if @event.use_centres
       breadcrumbs.add @project.title, event_project_path(@event, @project)
+    end
+
+    def project_params
+      params.require(:project).permit(:title, :team, :url, :secret, :my_secret,
+          :image, :summary, :description, :ideas, :data, :twitter, :github_url,
+          :svn_url, :code_url, :centre, :centre_id)
     end
 end
