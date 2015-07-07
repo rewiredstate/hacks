@@ -43,7 +43,9 @@ class Admin::EventsController < Admin::BaseController
   private
     def event_params
       params.fetch(:event, {}).permit(:title, :slug, :hashtag, :use_centres,
-                :active, :url, :enable_project_creation, :start_date)
+                :active, :url, :enable_project_creation, :start_date,
+                centres_attributes: [ :id, :name, :slug ],
+                award_categories_attributes: [ :id, :title, :description, :format, :level, :featured, :_destroy ])
     end
 
 end
