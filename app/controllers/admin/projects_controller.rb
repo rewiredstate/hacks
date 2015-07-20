@@ -1,24 +1,43 @@
 class Admin::ProjectsController < Admin::BaseController
-
-  inherit_resources
-
-  belongs_to :event, :finder => :find_by_slug, :param => :event_id
-  with_role :admin
-  actions :all, :except => [:show, :new, :create]
-
   before_filter do
     breadcrumbs.add "Events", admin_events_path
-    breadcrumbs.add parent.title, edit_parent_path
-    breadcrumbs.add "Projects", collection_path
+    breadcrumbs.add event.title, edit_admin_event_path(event)
+    breadcrumbs.add "Projects", admin_event_projects_path(event)
   end
 
-  before_filter :only => :update do
-    resource.managing = true
-  end
-
-  protected
-    def resource
-      @project ||= @event.projects.find_by_slug(params[:id])
+  def update
+    if project.update_attributes(project_params)
+      redirect_to admin_event_projects_path(event)
+    else
+      render action: :edit
     end
+  end
+
+  def destroy
+    project.destroy
+    redirect_to admin_event_projects_path
+  end
+
+  def projects
+    @projects ||= event.projects
+  end
+  helper_method :projects
+
+  def project
+    @project ||= projects.find_by_slug(params[:id])
+  end
+  helper_method :project
+
+  def event
+    @event ||= Event.find_by_slug(params[:event_id])
+  end
+  helper_method :event
+
+private
+  def project_params
+    params.fetch(:project, {}).permit(:title, :team, :url, :secret, :image,
+      :summary, :description, :ideas, :data, :twitter, :github_url, :svn_url,
+      :code_url, :awards_attributes, :centre, :centre_id, :slug)
+  end
 
 end

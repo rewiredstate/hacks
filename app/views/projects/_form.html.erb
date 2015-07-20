@@ -1,6 +1,6 @@
-<% if @project.errors.any? %>
+<% if project.errors.any? %>
 <ul class="errors">
- 	<% @project.errors.full_messages.each do |msg| %>
+ 	<% project.errors.full_messages.each do |msg| %>
  	  <% next if msg == "Image file name can't be empty" %>
 	<li class="message message_error"><%= msg %></li>
 	<% end %>
@@ -8,23 +8,17 @@
 <% end %>
 
 <fieldset class="secret">
-<% if @event.has_secret? -%>
+<% unless project.new_record? %>
     <p>
-        <%= f.label :my_secret, "Event Password <span>*</span>".html_safe %>
-        <%= f.text_field :my_secret %>
-        <span class="field_description">Enter the event password, as given out at the hack day, to <%= (@project.new_record?) ? "add" : "update" %> this project.</span>
-    </p>
-<% elsif !@project.new_record? -%>
-    <p>
-        <%= f.label :my_secret, "Project Password <span>*</span>".html_safe %>
-        <%= f.text_field :my_secret %>
+        <%= f.label :submitted_secret, "Project Password <span>*</span>".html_safe %>
+        <%= f.text_field :submitted_secret %>
         <span class="field_description">Enter the project password to make changes to this project.</span>
     </p>
-<% end -%>
-<% if @event.use_centres %>
+<% end %>
+<% if event.use_centres? %>
     <p>
         <%= f.label :centre_id, "Centre <span>*</span>".html_safe %>
-        <%= f.collection_select :centre_id, @event.centres.all, :id, :name, :include_blank => true %>
+        <%= f.collection_select :centre_id, event.centres.all, :id, :name, :include_blank => true %>
         <span class="field_description">The centre where you created this project.</span>
     </p>
 <% end %>
@@ -58,27 +52,27 @@
     <%= f.text_area :description %>
     <span class="field_description">Tell us about your project. You can use Markdown in this field.</span>
 </p>
-<% unless @project.data.nil? or @project.data.empty? %>
+<% unless project.data.nil? or project.data.empty? %>
 <p>
     <%= f.label :data, "Data used in your project" %>
     <%= f.text_area :data %>
     <span class="field_description">What data did you use in your project? You can use Markdown in this field.</span>
 </p>
-<% end -%>
-<% unless @project.ideas.nil? or @project.ideas.empty? %>
+<% end %>
+<% unless project.ideas.nil? or project.ideas.empty? %>
 <p>
     <%= f.label :ideas, "Ideas for taking your project forwards" %>
     <%= f.text_area :ideas %>
     <span class="field_description">What else would you like to add to your project? You can use Markdown in this field.</span>
 </p>
-<% end -%>
-<% unless @project.costs.nil? or @project.costs.empty? %>
+<% end %>
+<% unless project.costs.nil? or project.costs.empty? %>
 <p>
     <%= f.label :costs, "Costs for taking your project forwards" %>
     <%= f.text_area :costs %>
     <span class="field_description">What costs, if any, are involved in taking your project forwards? You can use Markdown in this field.</span>
 </p>
-<% end -%>
+<% end %>
 </fieldset>
 
 <fieldset>
@@ -107,8 +101,8 @@
 </p>
 </fieldset>
 
-<% if @project.new_record? %>
-    <% unless @event.has_secret? -%>
+<% if project.new_record? %>
+    <% unless event.has_secret? %>
     <fieldset class="secret">
         <p>
             <%= f.label :secret, "Choose a project password <span>*</span>".html_safe %>
@@ -116,9 +110,9 @@
             <span class="field_description">Enter a word which will be required to make further changes to this project.</span>
         </p>
     </fieldset>
-    <% end -%>
+    <% end %>
 
-    <p>Once you're happy with the details, hit <em>Create</em> below. Your project will appear immediately on the <%= @event.title %> event page.</p>
+    <p>Once you're happy with the details, hit <em>Create</em> below. Your project will appear immediately on the <%= event.title %> event page.</p>
     <p class="submit"><%= f.submit "Create Project" %></p>
 <% else %>
     <p class="submit"><%= f.submit "Save Project" %></p>

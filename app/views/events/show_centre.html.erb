@@ -1,10 +1,10 @@
 <%= render :partial => 'event_header' %>
 
 <div class="centres">
-    <%= link_to "&larr; See all centres and winners".html_safe, event_path(@event), :class => "back" %>
+    <%= link_to "&larr; See all centres and winners".html_safe, event_path(event), :class => "back" %>
     <ul class="centre_selection">
-        <% @event.centres.each do |c| %>
-          <li class="<%= 'selected' if c == @centre %>"><%= link_to c.name, centre_event_path(@event, c.slug) %></li>
+        <% event.centres.each do |c| %>
+          <li class="<%= 'selected' if c == @centre %>"><%= link_to c.name, centre_event_path(event, c.slug) %></li>
         <% end %>
     </ul>
     <div class="projects">
@@ -17,7 +17,7 @@
             <% end -%>
         </ul>
         <% else %>
-          <p class="no_projects">We don't have any projects yet from <strong><%= @centre.name %></strong>. <%= link_to "Add yours!", new_event_project_path(@event) %></p>
+          <p class="no_projects">We don't have any projects yet from <strong><%= @centre.name %></strong>. <%= link_to "Add yours!", new_event_project_path(event) %></p>
         <% end %>
     </div>
     <div class="clear"></div>

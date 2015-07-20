@@ -14,14 +14,14 @@ class Event < ActiveRecord::Base
   validates :title, :slug, :presence => true
   validates :slug, :uniqueness => { :case_sensitive => false }
 
-  scope :recent_first, order("start_date desc")
+  scope :recent_first, -> { order("start_date desc") }
 
   def to_param
     self.slug
   end
 
   def winners
-    self.award_categories.featured.all.map {|i| i.award_winners.all }.flatten.uniq
+    self.award_categories.featured.map(&:award_winners).flatten.uniq
   end
 
   def has_secret?
