@@ -2,13 +2,14 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
+  database: rs_hacks_development
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: hacks_test
+  database: rs_hacks_test
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: hacks_production
+  database: rs_hacks_production
